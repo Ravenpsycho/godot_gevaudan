@@ -33,9 +33,9 @@ func _on_item_list_item_selected(index: int) -> void:
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:
-	parent.get_node("player_name_label").text = line_edit.text
+	parent.get_node("player_name_label").text = new_text
 
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
-	parent.get_node("player_name_label").text = line_edit.text
+	parent.get_node("player_name_label").text = new_text
 	DisplayServer.virtual_keyboard_hide()
