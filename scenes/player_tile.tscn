@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctm8ed14uw26i"]
+[gd_scene load_steps=13 format=3 uid="uid://ctm8ed14uw26i"]
 
 [ext_resource type="Script" path="res://scripts/player_tile.gd" id="1_kswc2"]
 [ext_resource type="Texture2D" uid="uid://b625ocfpvfhew" path="res://images/dead halo.png" id="3_8ykl0"]
@@ -14,17 +14,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e325f"]
 size = Vector2(62, 65)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbwg4"]
-bg_color = Color(0.835294, 0.686275, 0.329412, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-expand_margin_left = 3.0
-expand_margin_right = 3.0
 
 [node name="player_tile" type="Sprite2D" groups=["player_group"]]
 texture = ExtResource("4_prgbf")
@@ -102,17 +91,17 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -25.5
-offset_top = -24.0
-offset_right = -34.5
-offset_bottom = 12.0
+offset_left = -25.0
+offset_top = -27.0
+offset_right = -34.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.317647, 0.145098, 0.0823529, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
+theme_override_colors/font_shadow_color = Color(0.784314, 0.643137, 0.313726, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_pbwg4")
 text = "Role"
 horizontal_alignment = 1
 script = ExtResource("9_bknka")
