@@ -166,6 +166,10 @@ func set_role(role_name:String):
 		role_changed.emit(short)
 	else:	
 		role_changed.emit(role_name)
+		
+func set_player_name(s:String):
+	self.name = s
+	self.get_node("player_name_label").text = s
 	
 func unaccent(s:String):
 	s=s.replace("é", "e")
