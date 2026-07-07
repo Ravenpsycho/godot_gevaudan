@@ -30,7 +30,3 @@ func _on_item_list_item_selected(index: int) -> void:
 	var rl:ItemList = self.get_node("Popup").get_node("ColorRect").get_node("role_list")
 	var it = rl.get_item_text(index)
 	parent.set_role(it)
-
-
-func _on_line_edit_focus_entered() -> void:
-	DisplayServer.virtual_keyboard_show("")
