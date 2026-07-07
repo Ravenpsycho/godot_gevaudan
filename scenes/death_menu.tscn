@@ -8,13 +8,17 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1260.0
+offset_bottom = -900.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ojpyo")
 
 [node name="Popup" type="Popup" parent="."]
+transparent_bg = true
 size = Vector2i(1260, 900)
 visible = true
+transparent = true
 
 [node name="ColorRect" type="ColorRect" parent="Popup"]
 anchors_preset = 8
