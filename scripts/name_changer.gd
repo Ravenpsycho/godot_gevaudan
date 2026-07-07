@@ -30,3 +30,12 @@ func _on_item_list_item_selected(index: int) -> void:
 	var rl:ItemList = self.get_node("Popup").get_node("ColorRect").get_node("role_list")
 	var it = rl.get_item_text(index)
 	parent.set_role(it)
+
+
+func _on_line_edit_text_changed(new_text: String) -> void:
+	parent.get_node("player_name_label").text = line_edit.text
+
+
+func _on_line_edit_text_submitted(new_text: String) -> void:
+	parent.get_node("player_name_label").text = line_edit.text
+	DisplayServer.virtual_keyboard_hide()
