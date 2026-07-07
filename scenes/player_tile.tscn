@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctm8ed14uw26i"]
+[gd_scene load_steps=15 format=3 uid="uid://ctm8ed14uw26i"]
 
 [ext_resource type="Script" path="res://scripts/player_tile.gd" id="1_kswc2"]
 [ext_resource type="Texture2D" uid="uid://b625ocfpvfhew" path="res://images/dead halo.png" id="3_8ykl0"]
@@ -26,18 +26,7 @@ border_blend = true
 expand_margin_left = 3.0
 expand_margin_right = 3.0
 
-[sub_resource type="FontFile" id="FontFile_mctfr"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_f1m15"]
-font = SubResource("FontFile_mctfr")
 font_color = Color(0.341176, 0.172549, 0.0980392, 1)
 outline_size = 2
 outline_color = Color(0.133196, 0.133196, 0.133196, 1)
@@ -114,7 +103,6 @@ text = "<Name>"
 horizontal_alignment = 1
 
 [node name="player_role_label" type="Label" parent="."]
-texture_filter = 5
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
