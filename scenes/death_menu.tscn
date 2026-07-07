@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfrxifwck5agg"]
+
+[ext_resource type="Script" path="res://scenes/death_menu.gd" id="1_ojpyo"]
+[ext_resource type="Script" path="res://scenes/cause_list.gd" id="2_gbejg"]
+
+[node name="death_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ojpyo")
+
+[node name="Popup" type="Popup" parent="."]
+size = Vector2i(1260, 900)
+visible = true
+
+[node name="ColorRect" type="ColorRect" parent="Popup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -225.0
+offset_right = 225.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.537255)
+
+[node name="cause_list" type="ItemList" parent="Popup/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_gbejg")
+
+[connection signal="item_selected" from="Popup/ColorRect/cause_list" to="." method="_on_cause_list_item_selected"]

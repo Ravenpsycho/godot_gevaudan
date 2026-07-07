@@ -1,0 +1,38 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cdbsl21q6a21y"]
+
+[ext_resource type="Texture2D" uid="uid://btes3r46goo3a" path="res://images/gevaudan_tiles_mat.png" id="2_02ma5"]
+[ext_resource type="Texture2D" uid="uid://1camc2exjwry" path="res://images/villager_60x60.png" id="3_3f2bo"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_38gb7"]
+texture = ExtResource("2_02ma5")
+texture_region_size = Vector2i(60, 60)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hm6dr"]
+texture = ExtResource("3_3f2bo")
+texture_region_size = Vector2i(60, 60)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(60, 60)
+sources/2 = SubResource("TileSetAtlasSource_38gb7")
+sources/3 = SubResource("TileSetAtlasSource_hm6dr")

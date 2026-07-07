@@ -1,0 +1,154 @@
+[gd_scene load_steps=16 format=3 uid="uid://ctm8ed14uw26i"]
+
+[ext_resource type="Script" path="res://scripts/player_tile.gd" id="1_kswc2"]
+[ext_resource type="Texture2D" uid="uid://b625ocfpvfhew" path="res://images/dead halo.png" id="3_8ykl0"]
+[ext_resource type="PackedScene" uid="uid://c552pjexbt7he" path="res://scenes/interact_menu.tscn" id="4_45pth"]
+[ext_resource type="Texture2D" uid="uid://v3ibxosxwxb3" path="res://images/roles/Dos-Cartes.png" id="4_prgbf"]
+[ext_resource type="Texture2D" uid="uid://cdqxa5lcjg3yb" path="res://images/heart.png" id="4_t02xe"]
+[ext_resource type="Texture2D" uid="uid://bvrx7m47a6kid" path="res://images/mentor.png" id="6_77ae4"]
+[ext_resource type="Texture2D" uid="uid://44tnwvblyymx" path="res://images/ww_head.png" id="7_w7rvu"]
+[ext_resource type="Texture2D" uid="uid://jgun5gto7knw" path="res://images/roles/Plumes du corbeau.png" id="8_2dag5"]
+[ext_resource type="PackedScene" uid="uid://cil2ymuyny3e6" path="res://scenes/name_changer.tscn" id="9_053my"]
+[ext_resource type="Script" path="res://scripts/player_role_label.gd" id="9_bknka"]
+[ext_resource type="Texture2D" uid="uid://bni7klo1ya3j2" path="res://images/flute_overlay.png" id="11_v7kp2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e325f"]
+size = Vector2(62, 65)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbwg4"]
+bg_color = Color(0.835294, 0.686275, 0.329412, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+
+[sub_resource type="FontFile" id="FontFile_mctfr"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1m15"]
+font = SubResource("FontFile_mctfr")
+font_color = Color(0.341176, 0.172549, 0.0980392, 1)
+outline_size = 2
+outline_color = Color(0.133196, 0.133196, 0.133196, 1)
+
+[node name="player_tile" type="Sprite2D" groups=["player_group"]]
+texture = ExtResource("4_prgbf")
+script = ExtResource("1_kswc2")
+
+[node name="name_changer" parent="." instance=ExtResource("9_053my")]
+visible = false
+
+[node name="dead_overlay" type="Sprite2D" parent="."]
+visible = false
+light_mask = 4
+visibility_layer = 4
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("3_8ykl0")
+
+[node name="card_overlay" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+texture = ExtResource("4_prgbf")
+
+[node name="love_overlay" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(21, -20)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("4_t02xe")
+
+[node name="mentor_overlay" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-22, -22)
+rotation = -3.14159
+scale = Vector2(0.0479778, -0.0496229)
+texture = ExtResource("6_77ae4")
+
+[node name="raven_overlay" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(20, 18)
+rotation = -3.14159
+scale = Vector2(0.5, -0.521)
+texture = ExtResource("8_2dag5")
+
+[node name="savage_overlay" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-24, -29)
+scale = Vector2(0.0179701, 0.0221765)
+texture = ExtResource("7_w7rvu")
+
+[node name="collision_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_area"]
+visible = false
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_e325f")
+
+[node name="player_name_label" type="Label" parent="."]
+texture_filter = 5
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -119.0
+offset_right = -23.0
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
+text = "<Name>"
+horizontal_alignment = 1
+
+[node name="player_role_label" type="Label" parent="."]
+texture_filter = 5
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -22.0
+offset_right = -35.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_pbwg4")
+text = "Role"
+label_settings = SubResource("LabelSettings_f1m15")
+horizontal_alignment = 1
+script = ExtResource("9_bknka")
+
+[node name="flute_overlay" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-23, 22)
+rotation = -3.14159
+scale = Vector2(0.1, -0.104)
+texture = ExtResource("11_v7kp2")
+
+[node name="interact_menu" parent="." instance=ExtResource("4_45pth")]
+visible = false
+offset_left = -30.0
+offset_top = -29.0
+offset_right = -30.0
+offset_bottom = -29.0
+
+[connection signal="interact_with" from="." to="interact_menu" method="_on_player_tile_interact_with"]
+[connection signal="role_changed" from="." to="player_role_label" method="_on_player_tile_role_changed"]

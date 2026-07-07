@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj2k0lha3pi3x"]
+
+[ext_resource type="Script" path="res://scripts/drop_spot.gd" id="1_et80f"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_e461r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssmi6"]
+size = Vector2(40, 40)
+
+[node name="drop_spot" type="Area2D" groups=["drop_spot_group"]]
+script = ExtResource("1_et80f")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
+rotation = 3.14159
+scale = Vector2(40, 40)
+mesh = SubResource("QuadMesh_e461r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ssmi6")
