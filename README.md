@@ -9,6 +9,7 @@ Un projet d'aide de jeu pour Maître.sse de Jeu type Loup Garous de Crenin.
 ### Menus et coding
 - [ ] Menu interactif: Chevalier épée rouillée
 - [ ] Menu interactif: Salvateur
+- [ ] Menu interactif: Infect
 - [ ] Menu interactif: Voyante (log qui elle regarde)
 - [ ] Menu interactif: Renard (log qui il regarde et perte de pouvoir)
 - [ ] Menu interactif et marqueur: Innocent
