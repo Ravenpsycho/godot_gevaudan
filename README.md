@@ -3,7 +3,7 @@
 Un projet d'aide de jeu pour Maître.sse de Jeu type Loup Garous de Crenin.
 
 ## To do
-
+## "Make it Work"
 ### Modifications
 - [ ] Noms des rôles: Innocent du village, Juge sévère, Cupidon Amoureux
 ### Menus et coding
@@ -26,6 +26,16 @@ Un projet d'aide de jeu pour Maître.sse de Jeu type Loup Garous de Crenin.
 - [ ] Implémenter: noms MJ et Heure de début/fin
 ### Finaliser
 - [ ] Progression des villageois, LG et solitaires
+
+## "Make it Pretty"
+- [ ] Textures moins moches
+- [ ] Résolution optimisée
+- [ ] Menus et interface plus personnalisés
+
+## "Make it Fast"
+- [ ] Identifier les redondances et optimisations
+- [ ] Réorganiser les scènes/scripts
+- [ ] Optimiser les boucles
 
 ## Licence
 Ce projet est sous licence Creative Commons BY-NC-SA 4.0. Vous êtes libre de :
