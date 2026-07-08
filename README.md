@@ -16,7 +16,6 @@ Un projet d'aide de jeu pour Maître.sse de Jeu type Loup Garous de Crenin.
 - [ ] Code: Griser les morts
 - [ ] Overlay: Esprit Frappeur
 - [ ] Overlay: Désigné
-- [ ] Log:
 ### Gameplay
 - [ ] Implémenter: Jour et Nuit
 - [ ] Implémenter: Sauvegarde et retour
