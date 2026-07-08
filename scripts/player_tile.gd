@@ -49,6 +49,7 @@ const SHORTNAMES: Dictionary = {
 
 signal interact_with
 signal role_changed
+signal name_changed
 
 func _ready() -> void:
 	drop_spots=get_tree().get_nodes_in_group("drop_spot_group")
@@ -124,12 +125,12 @@ func come_back():
 func toggle_death():
 	if self.alive:
 		self.die()
-		UI.log("%s est mort!" % self.name)
+		UI.log("%s <%s> est mort!" % [self.name, self.role])
 		return true
 	else:
 		self.come_back()
 		self.cause_of_death = ""
-		UI.log("%s ramené à la vie!." % self.name)
+		UI.log("%s <%s> ramené à la vie!" % [self.name, self.role])
 		return false
 
 func toggle_rage():
@@ -175,7 +176,7 @@ func set_role(role_name:String):
 		
 func set_player_name(s:String):
 	self.name = s
-	self.get_node("player_name_label").text = s
+	name_changed.emit(s)
 	
 func unaccent(s:String):
 	s=s.replace("é", "e")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctm8ed14uw26i"]
+[gd_scene load_steps=14 format=3 uid="uid://ctm8ed14uw26i"]
 
 [ext_resource type="Script" path="res://scripts/player_tile.gd" id="1_kswc2"]
 [ext_resource type="Texture2D" uid="uid://b625ocfpvfhew" path="res://images/dead halo.png" id="3_8ykl0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://jgun5gto7knw" path="res://images/roles/Plumes du corbeau.png" id="8_2dag5"]
 [ext_resource type="PackedScene" uid="uid://cil2ymuyny3e6" path="res://scenes/name_changer.tscn" id="9_053my"]
 [ext_resource type="Script" path="res://scripts/player_role_label.gd" id="9_bknka"]
+[ext_resource type="Script" path="res://scripts/player_name_label.gd" id="9_ecd3o"]
 [ext_resource type="Texture2D" uid="uid://bni7klo1ya3j2" path="res://images/flute_overlay.png" id="11_v7kp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e325f"]
@@ -81,6 +82,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 18
 text = "<Name>"
 horizontal_alignment = 1
+script = ExtResource("9_ecd3o")
 metadata/_edit_use_anchors_ = true
 
 [node name="player_role_label" type="Label" parent="."]
@@ -122,4 +124,5 @@ offset_bottom = -29.0
 metadata/_edit_use_anchors_ = true
 
 [connection signal="interact_with" from="." to="interact_menu" method="_on_player_tile_interact_with"]
+[connection signal="name_changed" from="." to="player_name_label" method="_on_player_tile_name_changed"]
 [connection signal="role_changed" from="." to="player_role_label" method="_on_player_tile_role_changed"]

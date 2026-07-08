@@ -20,53 +20,48 @@ script = ExtResource("1_6teia")
 
 [node name="Popup" type="Popup" parent="."]
 transparent_bg = true
-mode = 4
-size = Vector2i(1260, 900)
+title = "Infos Villageois"
+size = Vector2i(1560, 900)
 visible = true
-content_scale_aspect = 4
+transparent = true
 
-[node name="ColorRect" type="ColorRect" parent="Popup"]
-offset_left = 60.0
-offset_top = 180.0
-offset_right = 480.0
-offset_bottom = 720.0
-color = Color(0, 0, 0, 0.862745)
-
-[node name="LineEdit" type="LineEdit" parent="Popup/ColorRect"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 60.0
+[node name="container" type="VBoxContainer" parent="Popup"]
+custom_minimum_size = Vector2(400, 384)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -225.0
+offset_right = 200.0
+offset_bottom = 225.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="Popup/container"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter Player Name:"
 alignment = 1
 expand_to_text_length = true
 
-[node name="role_list" type="ItemList" parent="Popup/ColorRect"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 60.0
-offset_right = 410.0
-offset_bottom = 580.0
+[node name="role_list" type="ItemList" parent="Popup/container"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
 theme_override_font_sizes/font_size = 24
 script = ExtResource("2_381hk")
 
-[node name="Button" type="Button" parent="Popup/ColorRect"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -34.0
-offset_bottom = 66.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Button" type="Button" parent="Popup/container"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
 theme = SubResource("Theme_jtrli")
 theme_override_font_sizes/font_size = 24
 text = "Confirm"
 
-[connection signal="text_changed" from="Popup/ColorRect/LineEdit" to="." method="_on_line_edit_text_changed"]
-[connection signal="text_submitted" from="Popup/ColorRect/LineEdit" to="." method="_on_line_edit_text_submitted"]
-[connection signal="item_selected" from="Popup/ColorRect/role_list" to="." method="_on_item_list_item_selected"]
-[connection signal="pressed" from="Popup/ColorRect/Button" to="." method="_on_button_pressed"]
+[connection signal="text_changed" from="Popup/container/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="Popup/container/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="item_selected" from="Popup/container/role_list" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="Popup/container/Button" to="." method="_on_button_pressed"]

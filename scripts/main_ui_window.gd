@@ -1,7 +1,7 @@
 extends Control
 class_name MainUI
 var players: Array[Node]
-var status: ColorRect
+var status: VBoxContainer
 var logger: ItemList
 
 # Called when the node enters the scene tree for the first time.
@@ -31,7 +31,7 @@ func _on_reset_mentor_pressed() -> void:
 func _on_add_player_button_up() -> void:
 	var parent = self.get_parent()
 	parent.add_player()
-	await get_tree().process_frame
+	release_focus()
 
 func _on_reset_powers_pressed() -> void:
 	players = get_tree().get_nodes_in_group("player_group")
