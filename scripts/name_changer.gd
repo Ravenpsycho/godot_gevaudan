@@ -7,7 +7,6 @@ var line_edit: LineEdit
 func _ready() -> void:
 	parent = self.get_parent()
 	pop_up = self.get_node("Popup")
-	print(self.get_children())
 	line_edit = pop_up.get_node("ColorRect").get_node("LineEdit")
 	line_edit.grab_focus()
 
@@ -22,7 +21,6 @@ func _on_button_pressed() -> void:
 		line_edit.add_theme_color_override("font_placeholder_color", Color(255,0,0))
 		return
 	parent.get_node("player_name_label").text = line_edit.text
-	print(line_edit.text)
 	parent.name = line_edit.text
 	pop_up.visible = false
 

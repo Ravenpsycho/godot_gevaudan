@@ -2,6 +2,7 @@ extends Sprite2D
 
 class_name PlayerTile
 
+var UI: MainUI
 var is_draggable:bool = false
 var delay:float = 0.1
 var mouse_offset
@@ -49,6 +50,8 @@ signal role_changed
 func _ready() -> void:
 	drop_spots=get_tree().get_nodes_in_group("drop_spot_group")
 	card_overlay = self.get_node("card_overlay")
+	UI = self.get_parent().get_node("main_UI")
+	z_index = 0
 	
 func _physics_process(delta: float) -> void:
 	if is_draggable:
@@ -118,12 +121,12 @@ func come_back():
 func toggle_death():
 	if self.alive:
 		self.die()
-		print("%s dead." % self.name)
+		UI.log("%s dead." % self.name)
 		return true
 	else:
 		self.come_back()
 		self.cause_of_death = ""
-		print("%s came back to life!." % self.name)
+		UI.log("%s came back to life!." % self.name)
 		return false
 
 func toggle_rage():

@@ -8,9 +8,11 @@ var swap
 var players
 var ref
 var delay = 0.25
+var UI: MainUI
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	UI = get_tree().get_first_node_in_group("main_table").get_node("main_UI")
 	ref = self.get_node("ReferenceRect")
 	love = ref.get_node("Love")
 	cancel = ref.get_node("Cancel")
@@ -25,9 +27,7 @@ func _process(_delta: float) -> void:
 			reset_lovers()
 			self.visible = false
 		else:
-			print(parent_player)
-			print("Loves")
-			print(parent_target)
+			UI.log("%s loves %s" % [parent_player.name, parent_target.name])
 			parent_player.fall_in_love(parent_target)
 			parent_target.fall_in_love(parent_player)
 			self.visible = false
@@ -66,6 +66,7 @@ func _on_player_tile_interact_with(origin, target) -> void:
 	love.visible = !test_lovers()
 	ctx.text = get_context()
 	self.visible = true
+	z_index = RenderingServer.CANVAS_ITEM_Z_MAX
 	if ctx.text == "":
 		ctx.visible = false
 	if !test_for_role("Cupidon"):

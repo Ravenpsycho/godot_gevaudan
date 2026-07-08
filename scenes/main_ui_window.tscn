@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bugrspp1gnuce"]
+[gd_scene load_steps=3 format=3 uid="uid://bugrspp1gnuce"]
 
 [ext_resource type="Script" path="res://scripts/main_ui_window.gd" id="1_ls5bf"]
+[ext_resource type="Script" path="res://scripts/log_stream.gd" id="2_pvsm5"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -39,6 +40,36 @@ offset_right = 177.0
 offset_bottom = 39.0
 theme_override_font_sizes/font_size = 24
 text = "Add Player"
+
+[node name="status_display" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 194.0
+offset_right = 242.0
+offset_bottom = 535.0
+color = Color(0, 0, 0, 0.631373)
+
+[node name="progress_status" type="Label" parent="status_display"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 101.0
+grow_horizontal = 2
+text = "Test1
+Test2
+Test3
+Test4"
+autowrap_mode = 1
+
+[node name="log_stream" type="ItemList" parent="status_display"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_pvsm5")
 
 [connection signal="pressed" from="reset_lovers" to="." method="_on_reset_lovers_pressed"]
 [connection signal="pressed" from="reset_mentor" to="." method="_on_reset_mentor_pressed"]

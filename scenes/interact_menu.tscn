@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/interact_menu.gd" id="1_0hhqw"]
 
-[node name="Control" type="Control"]
+[node name="interact_menu" type="Control"]
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,9 +14,9 @@ script = ExtResource("1_0hhqw")
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 layout_mode = 0
-offset_left = 91.0
+offset_left = 80.0
 offset_top = -59.0
-offset_right = 227.0
+offset_right = 216.0
 offset_bottom = 117.0
 
 [node name="Love" type="Button" parent="ReferenceRect"]

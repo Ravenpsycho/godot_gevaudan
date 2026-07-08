@@ -1,14 +1,22 @@
 extends Control
+class_name MainUI
 var players: Array[Node]
+var status: ColorRect
+var logger: ItemList
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	status = self.get_node("status_display")
+	logger = status.get_node("log_stream")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-
+	
+func log(log_str:String):
+	logger.add_item(log_str)
+	logger.select(logger.item_count-1, true)
+	logger.ensure_current_is_visible()
 
 func _on_reset_lovers_pressed() -> void:
 	players = get_tree().get_nodes_in_group("player_group")
