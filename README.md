@@ -5,26 +5,26 @@ Un projet d'aide de jeu pour Maître.sse de Jeu type Loup Garous de Crenin.
 ## To do
 
 ### Modifications
-[ ] Noms des rôles: Innocent du village, Juge sévère, Cupidon Amoureux
+- [ ] Noms des rôles: Innocent du village, Juge sévère, Cupidon Amoureux
 ### Menus et coding
-[ ] Menu interactif: Chevalier épée rouillée
-[ ] Menu interactif: Salvateur
-[ ] Menu interactif: Voyante (log qui elle regarde)
-[ ] Menu interactif: Renard (log qui il regarde et perte de pouvoir)
-[ ] Menu interactif et marqueur: Innocent
-[ ] Code: Salvateur mémorise dernier joueur et popup "pas possible"
-[ ] Code: Griser les morts
-[ ] Overlay: Esprit Frappeur
-[ ] Overlay: Désigné
-[ ] Log:
+- [ ] Menu interactif: Chevalier épée rouillée
+- [ ] Menu interactif: Salvateur
+- [ ] Menu interactif: Voyante (log qui elle regarde)
+- [ ] Menu interactif: Renard (log qui il regarde et perte de pouvoir)
+- [ ] Menu interactif et marqueur: Innocent
+- [ ] Code: Salvateur mémorise dernier joueur et popup "pas possible"
+- [ ] Code: Griser les morts
+- [ ] Overlay: Esprit Frappeur
+- [ ] Overlay: Désigné
+- [ ] Log:
 ### Gameplay
-[ ] Implémenter: Jour et Nuit
-[ ] Implémenter: Sauvegarde et retour
-[ ] Implémenter: Nombre de votes
-[ ] Implémenter: Compteurs et fin de jeu
-[ ] Implémenter: noms MJ et Heure de début/fin
+- [ ] Implémenter: Jour et Nuit
+- [ ] Implémenter: Sauvegarde et retour
+- [ ] Implémenter: Nombre de votes
+- [ ] Implémenter: Compteurs et fin de jeu
+- [ ] Implémenter: noms MJ et Heure de début/fin
 ### Finaliser
-[ ] Progression des villageois, LG et solitaires
+- [ ] Progression des villageois, LG et solitaires
 
 ## Licence
 Ce projet est sous licence Creative Commons BY-NC-SA 4.0. Vous êtes libre de :
