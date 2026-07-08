@@ -1,4 +1,5 @@
 extends Control
+var main_table
 var parent_player:PlayerTile #The parent player
 var parent_target:PlayerTile #The parent target
 var love
@@ -19,6 +20,7 @@ func _ready() -> void:
 	ctx = ref.get_node("Context")
 	swap = ref.get_node("Swap")
 	update_players()
+	main_table = get_tree().get_first_node_in_group("main_table")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -63,6 +65,28 @@ func _process(_delta: float) -> void:
 		if ctx.text == "Sauver":
 			UI.log("La sorcière sauve %s!" % parent_target.name)
 			self.visible = false
+		if ctx.text == "Tétanos!":
+			UI.log("%s est infecté par le Tétanos!" % parent_target.name)
+			self.visible = false
+		if ctx.text == "Protéger":
+			UI.log("%s est protégé pour la nuit!" % parent_target.name)
+			self.visible = false
+		if ctx.text == "Prendre rôle":
+			UI.log("%s échange son rôle avec %s!" % [parent_player.name, parent_target.name])
+			UI.log("--> Iel devient %s!" % [parent_target.role])
+			var temp = parent_player.role
+			parent_player.role = parent_target.role
+			parent_target.role = temp
+			self.visible = false
+		if ctx.text == "Vision":
+			UI.log("%s a une vision de %s!" % [parent_player.name, parent_target.name])
+			self.visible = false
+		if ctx.text == "Infecter":
+			parent_target.infect()
+			UI.log("%s infecte %s!" % [parent_player.name, parent_target.name])
+			UI.log("Iel est loup, désormais!" % [parent_player.name, parent_target.name])
+			main_table.update_counts()
+			self.visible = false
 		
 
 func _on_player_tile_interact_with(origin, target) -> void:
@@ -87,6 +111,16 @@ func get_context():
 		return "Charmer"
 	if parent_player.role == "Sorcière" and !parent_player.used_power:
 		return "Sauver"
+	if parent_player.role == "Chevalier à l'épée Rouillée":
+		return "Tétanos!"
+	if parent_player.role == "Salvateur":
+		return "Protéger"
+	if parent_player.role == "Servante Dévouée":
+		return "Prendre rôle"
+	if parent_player.role == "Voyante":
+		return "Vision"
+	if parent_player.role == "Infect Père des Loups":
+		return "Infecter"
 	return ""
 
 func reset_lovers():

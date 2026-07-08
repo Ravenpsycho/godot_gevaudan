@@ -3,6 +3,7 @@ extends Sprite2D
 class_name PlayerTile
 
 var UI: MainUI
+var main_table
 var is_draggable:bool = false
 var delay:float = 0.1
 var mouse_offset
@@ -20,8 +21,16 @@ var role: String = "Simple Villageois"
 var line_edit:LineEdit
 var alive = true
 var cause_of_death: String = ""
-var is_wherewolf: bool
+var is_wherewolf: bool = false
 var mentor_to: PlayerTile
+
+const WOLVES: Array =[
+	"Loup Garou",
+	"Loup Garou Blanc",
+	"Grand Méchant Loup",
+	"Infect Père des Loups"
+]
+
 const ALL_ROLES: Array = ['Enfant Sauvage', 'Juge Bègue', 'Abominable Sectaire', 
 'Bouc Emissaire', 'Voleur', 'Salvateur', 'Loup Garou', 'Renard', 'Assassin', 'Ancien du Village', 
 'Voyante', 'Petite Fille', 'Comédien', 'Simple Villageois', 'Joueur de flûte', 'Demi démon', 
@@ -54,6 +63,7 @@ signal name_changed
 func _ready() -> void:
 	drop_spots=get_tree().get_nodes_in_group("drop_spot_group")
 	card_overlay = self.get_node("card_overlay")
+	main_table = get_tree().get_first_node_in_group("main_table")
 	UI = self.get_parent().get_node("main_UI")
 	z_index = 0
 	
@@ -104,33 +114,45 @@ func process_dropspot(drop_spot):
 			self.queue_free()
 		else:
 			tween.tween_property(self, "position", drop_spot.position, delay)
+			
+func infect():
+	is_wherewolf = true
+	self.get_node("savage_overlay").visible = true
+
+func disinfect():
+	if role not in WOLVES:
+		is_wherewolf = false
+	self.get_node("savage_overlay").visible = false
 	
 func die():
-	self.alive = false
+	alive = false
+	UI.log("%s <%s> est mort!" % [name, role])
 	self.get_node("dead_overlay").visible = true
-	if self.in_love_with and self.in_love_with.alive:
-		self.in_love_with.toggle_death()
-	if self.mentor_to and self.mentor_to.alive:
-		self.mentor_to.get_node("savage_overlay").visible=true
+	if in_love_with and in_love_with.alive:
+		in_love_with.toggle_death()
+		UI.log("--> de chagrin!" % in_love_with.name)
+	if mentor_to and mentor_to.alive:
+		mentor_to.get_node("savage_overlay").visible=true
+		mentor_to.is_wherewolf = true
 	
-
 func come_back():
-	self.alive = true
-	self.get_node("dead_overlay").visible = false
-	if self.in_love_with and !self.in_love_with.alive:
-		self.in_love_with.toggle_death()
-	if self.mentor_to:
-		self.mentor_to.get_node("savage_overlay").visible=false
+	alive = true
+	UI.log("%s <%s> ramené à la vie!" % [name, role])
+	get_node("dead_overlay").visible = false
+	if in_love_with and !in_love_with.alive:
+		in_love_with.toggle_death()
+	if mentor_to:
+		mentor_to.get_node("savage_overlay").visible=false
 
 func toggle_death():
-	if self.alive:
-		self.die()
-		UI.log("%s <%s> est mort!" % [self.name, self.role])
+	if alive:
+		die()
+		main_table.update_counts(true)
 		return true
 	else:
-		self.come_back()
-		self.cause_of_death = ""
-		UI.log("%s <%s> ramené à la vie!" % [self.name, self.role])
+		come_back()
+		cause_of_death = ""
+		main_table.update_counts(true)
 		return false
 
 func toggle_rage():
@@ -142,16 +164,16 @@ func get_first_player_at(pos):
 			return p
 
 func fall_in_love(other_player):
-	self.in_love_with = other_player
+	in_love_with = other_player
 	self.get_node("love_overlay").visible = true
 
 func reset_love():
-	self.in_love_with = null
+	in_love_with = null
 	self.get_node("love_overlay").visible = false
 
 func reset_mentor():
-	self.mentor = null
-	self.mentor_to = null
+	mentor = null
+	mentor_to = null
 	self.get_node("savage_overlay").visible = false
 	self.get_node("mentor_overlay").visible = false
 	
@@ -166,7 +188,12 @@ func snap_back(to_pos):
 	tween.tween_property(self, "position", to_pos, delay)
 						
 func set_role(role_name:String):
-	self.role = role_name
+	role = role_name
+	if role_name in WOLVES:
+		is_wherewolf = true
+	var counts = main_table.update_counts()
+	print("counts at role assign:")
+	print(counts)
 	card_overlay.texture = load("res://images/roles/"+unaccent(role_name)+".png")
 	var short = SHORTNAMES.get(role_name)
 	if short:
@@ -175,7 +202,7 @@ func set_role(role_name:String):
 		role_changed.emit(role_name)
 		
 func set_player_name(s:String):
-	self.name = s
+	name = s
 	name_changed.emit(s)
 	
 func unaccent(s:String):
@@ -184,3 +211,4 @@ func unaccent(s:String):
 	s=s.replace("û", "u")
 	s=s.replace("à", "a")
 	return s
+	

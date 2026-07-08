@@ -38,7 +38,8 @@ func _on_item_list_item_selected(index: int) -> void:
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:
-	parent.set_player_name(new_text)
+	if new_text:
+		parent.set_player_name(new_text)
 	
 
 func _on_line_edit_text_submitted(new_text: String) -> void:

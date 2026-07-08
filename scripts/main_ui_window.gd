@@ -37,3 +37,6 @@ func _on_reset_powers_pressed() -> void:
 	players = get_tree().get_nodes_in_group("player_group")
 	for p:PlayerTile in players:
 		p.used_power = false
+		p.disinfect()
+	var main_table = get_tree().get_first_node_in_group("main_table")
+	main_table.update_counts()
