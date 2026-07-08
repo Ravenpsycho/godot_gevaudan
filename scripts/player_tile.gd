@@ -27,7 +27,8 @@ const ALL_ROLES: Array = ['Enfant Sauvage', 'Juge Bègue', 'Abominable Sectaire'
 'Voyante', 'Petite Fille', 'Comédien', 'Simple Villageois', 'Joueur de flûte', 'Demi démon', 
 'Corbeau', 'Cupidon', 'Sorcière', "Montreur d'Ours", 'Loup Garou Blanc', 'Pyromane', 
 'Idiot du Village', 'Nécromancien', "Chevalier à l'épée Rouillée", 
-'Chasseur', 'Ange', 'Chien Loup', 'Dictateur', 'Fossoyeur', 'Grand Méchant Loup']
+'Chasseur', 'Ange', 'Chien Loup', 'Dictateur', 'Fossoyeur', 'Grand Méchant Loup',
+'Infect Père des Loups']
 
 const SHORTNAMES: Dictionary = {
 	'Enfant Sauvage': "Enfant", 
@@ -42,7 +43,8 @@ const SHORTNAMES: Dictionary = {
 	'Loup Garou Blanc': "Loup Blanc",
 	'Idiot du Village': "Innocent", 
 	"Chevalier à l'épée Rouillée": "Chevalier",
-	'Grand Méchant Loup': "Grand Loup"
+	'Grand Méchant Loup': "Grand Loup",
+	'Infect Père des Loups': "Infect"
 }
 
 signal interact_with
