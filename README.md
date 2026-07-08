@@ -12,10 +12,12 @@ Un projet d'aide de jeu pour Maître.sse de Jeu type Loup Garous de Crenin.
 - [ ] Menu interactif: Voyante (log qui elle regarde)
 - [ ] Menu interactif: Renard (log qui il regarde et perte de pouvoir)
 - [ ] Menu interactif et marqueur: Innocent
+- [ ] Menu interactif et marqueur: Infect (même que Enfant Sauvage mais en vert)
 - [ ] Code: Salvateur mémorise dernier joueur et popup "pas possible"
 - [ ] Code: Griser les morts
 - [ ] Overlay: Esprit Frappeur
 - [ ] Overlay: Désigné
+- [ ] Overlay: Ours qui Grogne
 ### Gameplay
 - [ ] Implémenter: Jour et Nuit
 - [ ] Implémenter: Sauvegarde et retour
