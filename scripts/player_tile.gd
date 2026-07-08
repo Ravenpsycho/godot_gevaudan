@@ -9,6 +9,7 @@ var mouse_offset
 var card_overlay: Sprite2D
 var drop_spots
 var players: Array[Node]
+var used_power: bool = false
 var origin_pos
 var opa
 var target_pos
@@ -121,12 +122,12 @@ func come_back():
 func toggle_death():
 	if self.alive:
 		self.die()
-		UI.log("%s dead." % self.name)
+		UI.log("%s est mort!" % self.name)
 		return true
 	else:
 		self.come_back()
 		self.cause_of_death = ""
-		UI.log("%s came back to life!." % self.name)
+		UI.log("%s ramené à la vie!." % self.name)
 		return false
 
 func toggle_rage():

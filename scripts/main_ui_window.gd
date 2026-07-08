@@ -32,3 +32,8 @@ func _on_add_player_button_up() -> void:
 	var parent = self.get_parent()
 	parent.add_player()
 	await get_tree().process_frame
+
+func _on_reset_powers_pressed() -> void:
+	players = get_tree().get_nodes_in_group("player_group")
+	for p:PlayerTile in players:
+		p.used_power = false

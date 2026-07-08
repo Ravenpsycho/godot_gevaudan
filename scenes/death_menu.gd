@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 func _on_cause_list_item_selected(index: int) -> void:
 	var itemlist: ItemList = self.get_node("Popup").get_node("ColorRect").get_node("cause_list")
 	var cause = itemlist.get_item_text(index)
-	UI.log_item(cause)
+	UI.log(cause)
 	player.cause_of_death = cause
 	self.queue_free()
 	

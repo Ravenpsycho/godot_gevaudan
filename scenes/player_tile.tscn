@@ -112,6 +112,7 @@ scale = Vector2(0.1, -0.104)
 texture = ExtResource("11_v7kp2")
 
 [node name="interact_menu" parent="." instance=ExtResource("4_45pth")]
+visible = false
 z_index = 5
 z_as_relative = true
 offset_left = -30.0

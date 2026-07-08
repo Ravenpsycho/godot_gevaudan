@@ -3,8 +3,8 @@ extends ItemList
 var causes: Array[String] = [
 	"Dévoré.e par les Loups!",
 	"Lynché.e par le Village!",
-	"Empoisonné par la sorcière!",
-	"Tué par le chasseur!",
+	"Empoisonné.e par la sorcière!",
+	"Tué.e par le chasseur!",
 	"Percé.e à jour! (Petite Fille)"
 ]
 

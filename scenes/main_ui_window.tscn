@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main_ui_window.gd" id="1_ls5bf"]
 [ext_resource type="Script" path="res://scripts/log_stream.gd" id="2_pvsm5"]
 
-[node name="Control" type="Control"]
+[node name="main_UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,12 +16,12 @@ script = ExtResource("1_ls5bf")
 layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 873.0
+offset_left = 839.0
 offset_top = 8.0
-offset_right = -281.0
-offset_bottom = -861.0
+offset_right = -237.0
+offset_bottom = -850.0
 theme_override_font_sizes/font_size = 24
-text = "Reset Lovers"
+text = "Annuler Amour"
 
 [node name="reset_mentor" type="Button" parent="."]
 layout_mode = 0
@@ -30,7 +30,7 @@ offset_top = 8.0
 offset_right = 1153.0
 offset_bottom = 39.0
 theme_override_font_sizes/font_size = 24
-text = "Reset Mentor"
+text = "Annuler Mentor"
 
 [node name="add_player" type="Button" parent="."]
 layout_mode = 1
@@ -41,11 +41,20 @@ offset_bottom = 39.0
 theme_override_font_sizes/font_size = 24
 text = "Add Player"
 
+[node name="reset powers" type="Button" parent="."]
+layout_mode = 0
+offset_left = 619.0
+offset_top = 8.0
+offset_right = 827.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 24
+text = "Annuler Pouvoirs"
+
 [node name="status_display" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 58.0
+offset_left = -1.0
 offset_top = 194.0
-offset_right = 242.0
+offset_right = 303.0
 offset_bottom = 535.0
 color = Color(0, 0, 0, 0.631373)
 
@@ -66,7 +75,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 111.0
+offset_top = 108.5
+offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_pvsm5")
@@ -74,3 +84,4 @@ script = ExtResource("2_pvsm5")
 [connection signal="pressed" from="reset_lovers" to="." method="_on_reset_lovers_pressed"]
 [connection signal="pressed" from="reset_mentor" to="." method="_on_reset_mentor_pressed"]
 [connection signal="button_up" from="add_player" to="." method="_on_add_player_button_up"]
+[connection signal="pressed" from="reset powers" to="." method="_on_reset_powers_pressed"]

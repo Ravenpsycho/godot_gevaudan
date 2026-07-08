@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 			reset_lovers()
 			self.visible = false
 		else:
-			UI.log("%s loves %s" % [parent_player.name, parent_target.name])
+			UI.log("%s aime %s" % [parent_player.name, parent_target.name])
 			parent_player.fall_in_love(parent_target)
 			parent_target.fall_in_love(parent_player)
 			self.visible = false
@@ -49,13 +49,19 @@ func _process(_delta: float) -> void:
 			parent_player.mentor = parent_target
 			parent_target.mentor_to = parent_player
 			parent_target.get_node("mentor_overlay").visible = true
+			UI.log("%s choisit %s comme Mentor!" % [parent_player.name, parent_target.name])
 			self.visible = false
 		if ctx.text == "Plumes":
 			reset_feathers()
 			parent_target.get_node("raven_overlay").visible = true
+			UI.log("%s reçoit les plumes!" % parent_target.name)
 			self.visible = false
 		if ctx.text == "Charmer":
 			parent_target.get_node("flute_overlay").visible = true
+			UI.log("%s tombe sous le charme!" % parent_target.name)
+			self.visible = false
+		if ctx.text == "Sauver":
+			UI.log("La sorcière sauve %s!" % parent_target.name)
 			self.visible = false
 		
 
@@ -79,6 +85,8 @@ func get_context():
 		return "Plumes"
 	if parent_player.role == "Joueur de flûte":
 		return "Charmer"
+	if parent_player.role == "Sorcière" and !parent_player.used_power:
+		return "Sauver"
 	return ""
 
 func reset_lovers():
