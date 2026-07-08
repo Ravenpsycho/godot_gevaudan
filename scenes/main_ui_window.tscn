@@ -12,62 +12,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ls5bf")
 
-[node name="reset_lovers" type="Button" parent="."]
-layout_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 839.0
-offset_top = 8.0
-offset_right = -237.0
-offset_bottom = -850.0
-theme_override_font_sizes/font_size = 24
-text = "Annuler Amour"
-
-[node name="reset_mentor" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1040.0
-offset_top = 8.0
-offset_right = 1153.0
-offset_bottom = 39.0
-theme_override_font_sizes/font_size = 24
-text = "Annuler Mentor"
-
-[node name="add_player" type="Button" parent="."]
-layout_mode = 1
-offset_left = 86.0
-offset_top = 8.0
-offset_right = 177.0
-offset_bottom = 39.0
-theme_override_font_sizes/font_size = 24
-text = "Add Player"
-
-[node name="reset powers" type="Button" parent="."]
-layout_mode = 0
-offset_left = 619.0
-offset_top = 8.0
-offset_right = 827.0
-offset_bottom = 50.0
-theme_override_font_sizes/font_size = 24
-text = "Annuler Pouvoirs"
-
 [node name="status_display" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 194.0
-offset_right = 303.0
-offset_bottom = 535.0
+offset_left = 1260.0
+offset_right = 1560.0
+offset_bottom = 900.0
 color = Color(0, 0, 0, 0.631373)
 
 [node name="progress_status" type="Label" parent="status_display"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 101.0
+offset_bottom = 200.0
 grow_horizontal = 2
-text = "Test1
-Test2
-Test3
-Test4"
+text = "Villageois : X/Y
+Loups : X/Y
+Solitaire 1: X/Y
+Solitaire 2: X/Y"
 autowrap_mode = 1
 
 [node name="log_stream" type="ItemList" parent="status_display"]
@@ -75,13 +36,44 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 108.5
-offset_bottom = 2.5
+offset_top = 326.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.607843, 0.0784314, 0.215686, 1)
 script = ExtResource("2_pvsm5")
 
-[connection signal="pressed" from="reset_lovers" to="." method="_on_reset_lovers_pressed"]
-[connection signal="pressed" from="reset_mentor" to="." method="_on_reset_mentor_pressed"]
-[connection signal="button_up" from="add_player" to="." method="_on_add_player_button_up"]
-[connection signal="pressed" from="reset powers" to="." method="_on_reset_powers_pressed"]
+[node name="reset_lovers" type="Button" parent="status_display"]
+layout_mode = 1
+offset_top = 242.0
+offset_right = 300.0
+offset_bottom = 284.0
+theme_override_font_sizes/font_size = 24
+text = "Annuler Amoureux"
+
+[node name="reset_mentor" type="Button" parent="status_display"]
+offset_top = 284.0
+offset_right = 300.0
+offset_bottom = 326.0
+theme_override_font_sizes/font_size = 24
+text = "Annuler Mentor"
+
+[node name="add_player" type="Button" parent="status_display"]
+layout_mode = 1
+offset_left = -1214.0
+offset_top = 34.0
+offset_right = -1082.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 24
+text = "Add Player"
+
+[node name="reset powers" type="Button" parent="status_display"]
+offset_top = 200.0
+offset_right = 300.0
+offset_bottom = 242.0
+theme_override_font_sizes/font_size = 24
+text = "Annuler Pouvoirs"
+
+[connection signal="pressed" from="status_display/reset_lovers" to="." method="_on_reset_lovers_pressed"]
+[connection signal="pressed" from="status_display/reset_mentor" to="." method="_on_reset_mentor_pressed"]
+[connection signal="button_up" from="status_display/add_player" to="." method="_on_add_player_button_up"]
+[connection signal="pressed" from="status_display/reset powers" to="." method="_on_reset_powers_pressed"]
