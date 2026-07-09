@@ -53,7 +53,8 @@ const SHORTNAMES: Dictionary = {
 	'Innocent du Village': "Innocent", 
 	"Chevalier à l'épée Rouillée": "Chevalier",
 	'Grand Méchant Loup': "Grand Loup",
-	'Infect Père des Loups': "Infect"
+	'Infect Père des Loups': "Infect",
+	'Cupidon Amoureux': "Cupidon 💘"
 }
 
 signal interact_with
