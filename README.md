@@ -5,16 +5,17 @@ Un projet d'aide de jeu pour Maître.sse de Jeu type Loup Garous de Crenin.
 ## To do
 ## "Make it Work"
 ### Modifications
-- [ ] Noms des rôles: Innocent du village, Juge sévère, Cupidon Amoureux
+- [X] Noms des rôles: Innocent du village, Juge sévère, Cupidon Amoureux
 ### Menus et coding
-- [ ] Menu interactif: Chevalier épée rouillée
+- [X] Menu interactif: Chevalier épée rouillée
 - [ ] Menu interactif: Servante dévouée
 - [ ] Menu interactif: Salvateur
-- [ ] Menu interactif: Infect
-- [ ] Menu interactif: Voyante (log qui elle regarde)
-- [ ] Menu interactif: Renard (log qui il regarde et perte de pouvoir)
-- [ ] Menu interactif et marqueur: Innocent
-- [ ] Menu interactif et marqueur: Infect (même que Enfant Sauvage mais en vert)
+- [X] Menu interactif: Infect
+- [X] Menu interactif: Voyante (log qui elle regarde)
+- [X] Menu interactif: Renard (log qui il regarde)
+- [ ] menu Solo: Renard perd son pouvoir
+- [ ] Menu Solo: Innocent
+- [X] Menu interactif et marqueur: Infect (même que Enfant Sauvage mais en vert)
 - [ ] Code: Salvateur mémorise dernier joueur et popup "pas possible"
 - [ ] Code: Griser les morts
 - [ ] Overlay: Esprit Frappeur
