@@ -23,6 +23,8 @@ var alive = true
 var cause_of_death: String = ""
 var is_wherewolf: bool = false
 var mentor_to: PlayerTile
+var name_changer
+var player_name: String
 
 const WOLVES: Array =[
 	"Loup Garou",
@@ -63,10 +65,9 @@ signal name_changed
 
 func _ready() -> void:
 	drop_spots=get_tree().get_nodes_in_group("drop_spot_group")
-	card_overlay = self.get_node("card_overlay")
+	card_overlay = get_node("card_overlay")
 	main_table = get_tree().get_first_node_in_group("main_table")
-	UI = self.get_parent().get_node("main_UI")
-	z_index = 0
+	UI = get_parent().get_node("main_UI")
 	
 func _physics_process(delta: float) -> void:
 	if is_draggable:
@@ -84,6 +85,7 @@ func _input(event: InputEvent) -> void:
 		elif event.is_released():
 			if is_draggable:
 				is_draggable = false
+				print(self.position)
 				for p in players:
 					if overlaps_with(p):
 						snap_back(origin_pos)
@@ -110,11 +112,16 @@ func process_dropspot(drop_spot):
 				self.add_child(death_menu)
 		elif drop_spot.name == "arrival_spot":
 			tween.tween_property(self, "position", drop_spot.position, delay)
-			self.get_node("name_changer").get_node("Popup").visible = true
+			call_name_changer()
 		elif drop_spot.name == "delete_player":
 			self.queue_free()
 		else:
 			tween.tween_property(self, "position", drop_spot.position, delay)
+			
+func call_name_changer():
+	var nc = preload("res://scenes/name_changer.tscn").instantiate()
+	nc.get_node("window/container/info_label").text = "infos pour %s" % self.name
+	add_child(nc)
 			
 func infect():
 	is_wherewolf = true
@@ -203,7 +210,7 @@ func set_role(role_name:String):
 		role_changed.emit(role_name)
 		
 func set_player_name(s:String):
-	name = s
+	self.name = s
 	name_changed.emit(s)
 	
 func unaccent(s:String):

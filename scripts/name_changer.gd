@@ -1,6 +1,6 @@
 extends Control
 var parent: PlayerTile
-var pop_up: Popup
+var pop_up: Window
 var line_edit: LineEdit
 var role_list: ItemList
 
@@ -9,9 +9,11 @@ const ALL_ROLES: Array = PlayerTile.ALL_ROLES
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	parent = self.get_parent()
-	pop_up = self.get_node("Popup")
+	pop_up = self.get_node("window")
 	role_list = pop_up.get_node("container").get_node("role_list")
 	line_edit = pop_up.get_node("container").get_node("LineEdit")
+	if parent.player_name:
+		line_edit.placeholder_text = parent.player_name
 	line_edit.grab_focus()
 	role_list.populate()
 	
