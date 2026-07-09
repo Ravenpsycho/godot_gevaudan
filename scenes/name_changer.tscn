@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cil2ymuyny3e6"]
 
 [ext_resource type="Script" path="res://scripts/name_changer.gd" id="1_6teia"]
-[ext_resource type="Script" path="res://scripts/item_list.gd" id="2_381hk"]
+[ext_resource type="Script" path="res://scripts/role_list.gd" id="2_381hk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ourp6"]
 bg_color = Color(4.45209e-07, 0.365941, 0.125466, 1)
@@ -47,6 +47,14 @@ placeholder_text = "Enter Player Name:"
 alignment = 1
 expand_to_text_length = true
 
+[node name="role_filter" type="LineEdit" parent="Popup/container"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+placeholder_text = "filter roles"
+alignment = 1
+expand_to_text_length = true
+
 [node name="role_list" type="ItemList" parent="Popup/container"]
 clip_contents = false
 custom_minimum_size = Vector2(0, 300)
@@ -63,5 +71,6 @@ text = "Confirm"
 
 [connection signal="text_changed" from="Popup/container/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="Popup/container/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="text_changed" from="Popup/container/role_filter" to="Popup/container/role_list" method="_on_role_filter_text_changed"]
 [connection signal="item_selected" from="Popup/container/role_list" to="." method="_on_item_list_item_selected"]
 [connection signal="pressed" from="Popup/container/Button" to="." method="_on_button_pressed"]

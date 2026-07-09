@@ -13,16 +13,11 @@ func _ready() -> void:
 	role_list = pop_up.get_node("container").get_node("role_list")
 	line_edit = pop_up.get_node("container").get_node("LineEdit")
 	line_edit.grab_focus()
-	for r in ALL_ROLES:
-		role_list.add_item(r)
-		role_list.sort_items_by_text()
+	role_list.populate()
 	
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-
 
 func _on_button_pressed() -> void:
 	if not line_edit.text:

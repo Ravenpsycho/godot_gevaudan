@@ -31,17 +31,17 @@ const WOLVES: Array =[
 	"Infect Père des Loups"
 ]
 
-const ALL_ROLES: Array = ['Enfant Sauvage', 'Juge Bègue', 'Abominable Sectaire', 
+const ALL_ROLES: Array = ['Enfant Sauvage', 'Juge Etourdi', 'Abominable Sectaire', 
 'Bouc Emissaire', 'Voleur', 'Salvateur', 'Loup Garou', 'Renard', 'Assassin', 'Ancien du Village', 
 'Voyante', 'Petite Fille', 'Comédien', 'Simple Villageois', 'Joueur de flûte', 'Demi démon', 
-'Corbeau', 'Cupidon', 'Sorcière', "Montreur d'Ours", 'Loup Garou Blanc', 'Pyromane', 
-'Idiot du Village', 'Nécromancien', "Chevalier à l'épée Rouillée", 
+'Corbeau', 'Cupidon Amoureux', 'Sorcière', "Montreur d'Ours", 'Loup Garou Blanc', 'Pyromane', 
+'Innocent du Village', 'Nécromancien', "Chevalier à l'épée Rouillée", 
 'Chasseur', 'Ange', 'Chien Loup', 'Dictateur', 'Fossoyeur', 'Grand Méchant Loup',
 'Infect Père des Loups']
 
 const SHORTNAMES: Dictionary = {
 	'Enfant Sauvage': "Enfant", 
-	'Juge Bègue': "Juge", 
+	'Juge Etourdi': "Juge", 
 	'Abominable Sectaire': "Sectaire", 
 	'Bouc Emissaire': "Bouc", 
 	'Ancien du Village': "Ancien",
@@ -50,7 +50,7 @@ const SHORTNAMES: Dictionary = {
 	'Joueur de flûte' : "Flûte", 
 	"Montreur d'Ours": "Ours", 
 	'Loup Garou Blanc': "Loup Blanc",
-	'Idiot du Village': "Innocent", 
+	'Innocent du Village': "Innocent", 
 	"Chevalier à l'épée Rouillée": "Chevalier",
 	'Grand Méchant Loup': "Grand Loup",
 	'Infect Père des Loups': "Infect"
