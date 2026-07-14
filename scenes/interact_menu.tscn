@@ -12,36 +12,39 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0hhqw")
 
-[node name="ReferenceRect" type="ReferenceRect" parent="."]
+[node name="ReferenceRect" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 80.0
-offset_top = -59.0
-offset_right = 216.0
-offset_bottom = 117.0
+offset_left = 81.0
+offset_top = -70.0
+offset_right = 217.0
+offset_bottom = 106.0
 
 [node name="Context" type="Button" parent="ReferenceRect"]
-layout_mode = 0
-offset_right = 66.0
-offset_bottom = 31.0
+layout_mode = 2
 text = "Mentor"
 
 [node name="Swap" type="Button" parent="ReferenceRect"]
-layout_mode = 0
-offset_top = 40.0
-offset_right = 50.0
-offset_bottom = 71.0
+layout_mode = 2
 text = "Swap"
 
 [node name="Love" type="Button" parent="ReferenceRect"]
-layout_mode = 0
-offset_top = 80.0
-offset_right = 98.0
-offset_bottom = 111.0
+layout_mode = 2
 text = "In love with"
 
 [node name="Cancel" type="Button" parent="ReferenceRect"]
-layout_mode = 0
-offset_top = 120.0
-offset_right = 60.0
-offset_bottom = 151.0
+layout_mode = 2
 text = "Cancel"
+
+[node name="base_actions" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = -224.0
+offset_top = -70.0
+offset_right = -88.0
+offset_bottom = 66.0
+
+[node name="Designer" type="Button" parent="base_actions"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.909804, 0, 0, 1)
+text = "Designer!"
+
+[connection signal="pressed" from="base_actions/Designer" to="." method="_on_designer_pressed"]

@@ -1,8 +1,9 @@
 extends Control
-var main_table
+var main_table: MainTable
 var parent_player:PlayerTile #The parent player
 var parent_target:PlayerTile #The parent target
 var love
+var chose_victim_btn: Button
 var cancel
 var ctx
 var swap
@@ -13,15 +14,16 @@ var UI: MainUI
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	UI = get_tree().get_first_node_in_group("main_table").get_node("main_UI")
-	ref = self.get_node("ReferenceRect")
-	love = ref.get_node("Love")
-	cancel = ref.get_node("Cancel")
-	ctx = ref.get_node("Context")
-	swap = ref.get_node("Swap")
-	update_players()
 	main_table = get_tree().get_first_node_in_group("main_table")
-
+	UI = main_table.get_node("main_UI")
+	ref = $ReferenceRect
+	love = $ReferenceRect/Love
+	cancel = $ReferenceRect/Cancel
+	ctx = $ReferenceRect/Context
+	swap = $ReferenceRect/Swap
+	chose_victim_btn = $base_actions/Designer
+	update_players()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if love.is_pressed():
@@ -158,3 +160,11 @@ func test_for_role(r:String):
 		if p.role == r:
 			return true
 	return false
+
+
+func _on_designer_pressed() -> void:
+	if main_table.game_params["day_night"] == "Night" :
+		UI.log("%s est désigné.e par la Meute!")
+	else:
+		UI.log("%s est désigné.e par la foule!")
+		

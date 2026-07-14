@@ -13,44 +13,25 @@ bg_color = Color(0.296379, 0.4329, 0.253909, 1)
 Button/styles/hover = SubResource("StyleBoxFlat_ourp6")
 Button/styles/normal = SubResource("StyleBoxFlat_i517m")
 
-[node name="name_changer" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1560.0
-offset_bottom = -900.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="name_changer" type="PanelContainer"]
+offset_left = 595.0
+offset_top = 207.0
+offset_right = 995.0
+offset_bottom = 672.0
 script = ExtResource("1_6teia")
 
-[node name="window" type="Popup" parent="."]
-transparent_bg = true
-size = Vector2i(1560, 900)
-visible = true
-transparent = true
+[node name="container" type="VBoxContainer" parent="."]
+z_index = 50
+custom_minimum_size = Vector2(400, 465)
+layout_mode = 2
 
-[node name="container" type="VBoxContainer" parent="window"]
-custom_minimum_size = Vector2(400, 384)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -225.0
-offset_right = 200.0
-offset_bottom = 225.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="info_label" type="Label" parent="window/container"]
+[node name="info_label" type="Label" parent="container"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 0.776471)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Infos pour"
 
-[node name="LineEdit" type="LineEdit" parent="window/container"]
+[node name="LineEdit" type="LineEdit" parent="container"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -58,7 +39,7 @@ placeholder_text = "Enter Player Name:"
 alignment = 1
 expand_to_text_length = true
 
-[node name="role_filter" type="LineEdit" parent="window/container"]
+[node name="role_filter" type="LineEdit" parent="container"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -66,22 +47,22 @@ placeholder_text = "filter roles"
 alignment = 1
 expand_to_text_length = true
 
-[node name="role_list" type="ItemList" parent="window/container"]
+[node name="role_list" type="ItemList" parent="container"]
 clip_contents = false
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 script = ExtResource("2_381hk")
 
-[node name="Button" type="Button" parent="window/container"]
+[node name="Button" type="Button" parent="container"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme = SubResource("Theme_jtrli")
 theme_override_font_sizes/font_size = 24
 text = "Confirm"
 
-[connection signal="text_changed" from="window/container/LineEdit" to="." method="_on_line_edit_text_changed"]
-[connection signal="text_submitted" from="window/container/LineEdit" to="." method="_on_line_edit_text_submitted"]
-[connection signal="text_changed" from="window/container/role_filter" to="window/container/role_list" method="_on_role_filter_text_changed"]
-[connection signal="item_selected" from="window/container/role_list" to="." method="_on_item_list_item_selected"]
-[connection signal="pressed" from="window/container/Button" to="." method="_on_button_pressed"]
+[connection signal="text_changed" from="container/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="container/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="text_changed" from="container/role_filter" to="container/role_list" method="_on_role_filter_text_changed"]
+[connection signal="item_selected" from="container/role_list" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="container/Button" to="." method="_on_button_pressed"]

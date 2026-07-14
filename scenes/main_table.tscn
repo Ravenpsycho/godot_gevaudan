@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://cqclxumiaedmu"]
+[gd_scene load_steps=6 format=4 uid="uid://cqclxumiaedmu"]
 
 [ext_resource type="Script" path="res://scripts/main_table.gd" id="1_r5etq"]
 [ext_resource type="TileSet" uid="uid://cdbsl21q6a21y" path="res://images/gevaudan_tiles.tres" id="2_im7h4"]
 [ext_resource type="PackedScene" uid="uid://bugrspp1gnuce" path="res://scenes/main_ui_window.tscn" id="3_hd0mk"]
 [ext_resource type="PackedScene" uid="uid://dj2k0lha3pi3x" path="res://scenes/drop_spot.tscn" id="4_ts2wc"]
+[ext_resource type="Texture2D" uid="uid://cfc2mg5m0cl8r" path="res://images/moon.png" id="5_njjyx"]
 
 [node name="main_table" type="Node2D" groups=["main_table"]]
 script = ExtResource("1_r5etq")
@@ -14,6 +15,7 @@ tile_map_data = PackedByteArray("AAAJAAEAAgACAAAAAAAEAAMAAgAAAAEAAAAJAAcAAgACAAI
 tile_set = ExtResource("2_im7h4")
 
 [node name="main_UI" parent="." instance=ExtResource("3_hd0mk")]
+metadata/_edit_use_anchors_ = true
 
 [node name="cemetary" parent="." instance=ExtResource("4_ts2wc")]
 position = Vector2(150, 720)
@@ -91,3 +93,40 @@ position = Vector2(391, 387)
 
 [node name="drop_spot22" parent="." instance=ExtResource("4_ts2wc")]
 position = Vector2(391, 268)
+
+[node name="night_overlay" type="ColorRect" parent="."]
+offset_right = 1260.0
+offset_bottom = 900.0
+color = Color(0.0130182, 1.20327e-07, 0.358247, 0.443137)
+
+[node name="moon_sprite" type="Sprite2D" parent="night_overlay"]
+position = Vector2(884, 32)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("5_njjyx")
+
+[node name="dn_label" type="Label" parent="."]
+offset_left = 926.0
+offset_top = 4.0
+offset_right = 1130.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 36
+text = "Nuit 1"
+horizontal_alignment = 1
+
+[node name="next_phase" type="Button" parent="."]
+offset_left = 1127.0
+offset_right = 1176.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 36
+text = ">>"
+
+[node name="prev_phase" type="Button" parent="."]
+visible = false
+offset_left = 792.0
+offset_right = 841.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 36
+text = "<<"
+
+[connection signal="pressed" from="next_phase" to="." method="_on_next_phase_pressed"]
+[connection signal="pressed" from="prev_phase" to="." method="_on_prev_phase_pressed"]

@@ -120,8 +120,10 @@ func process_dropspot(drop_spot):
 			
 func call_name_changer():
 	var nc = preload("res://scenes/name_changer.tscn").instantiate()
-	nc.get_node("window/container/info_label").text = "infos pour %s" % self.name
-	add_child(nc)
+	var main_table = get_tree().get_first_node_in_group("main_table")
+	nc.get_node("container/info_label").text = "infos pour %s" % self.name
+	nc.set_player(self)
+	main_table.add_child(nc)
 			
 func infect():
 	is_wherewolf = true
