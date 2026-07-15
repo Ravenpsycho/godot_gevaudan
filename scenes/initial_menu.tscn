@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv6dibjjeyxbq"]
+
+[ext_resource type="Script" path="res://scripts/initial_menu.gd" id="1_ak0mr"]
+
+[node name="initial_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ak0mr")
+
+[node name="initial_window" type="Window" parent="."]
+transparent_bg = true
+mode = 4
+size = Vector2i(1560, 900)
+transparent = true
+
+[node name="container" type="VBoxContainer" parent="initial_window"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MJ_label" type="Label" parent="initial_window/container"]
+layout_mode = 2
+text = "Maître.sse de jeu:"
+
+[node name="MJ_input" type="LineEdit" parent="initial_window/container"]
+layout_mode = 2
+
+[node name="co-MJ_label" type="Label" parent="initial_window/container"]
+layout_mode = 2
+text = "co-Maître.sse de jeu:"
+
+[node name="coMJ_input" type="LineEdit" parent="initial_window/container"]
+layout_mode = 2
+
+[node name="n_players_label" type="Label" parent="initial_window/container"]
+layout_mode = 2
+text = "Nombre de joueurs:"
+
+[node name="n_players_input" type="LineEdit" parent="initial_window/container"]
+layout_mode = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="initial_window/container"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="initial_window/container"]
+layout_mode = 2
+text = "Valider"
+
+[connection signal="pressed" from="initial_window/container/Button" to="." method="_on_button_pressed"]
