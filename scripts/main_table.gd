@@ -24,11 +24,13 @@ func next_phase():
 	if game_params["day_night"] == "Nuit":
 		game_params["day_night"] = "Jour"
 		$night_overlay.visible = false
+		$sun_sprite.visible = true
 		update_dn_display()
 	else:
 		game_params["day_night"] = "Nuit"
 		game_params["count"] += 1
 		$night_overlay.visible = true
+		$sun_sprite.visible = false
 		update_dn_display()
 
 func prev_phase():
@@ -36,10 +38,12 @@ func prev_phase():
 		game_params["day_night"] = "Jour"
 		game_params["count"] -= 1
 		$night_overlay.visible = false
+		$sun_sprite.visible = true
 		update_dn_display()
 	else:
 		game_params["day_night"] = "Nuit"
 		$night_overlay.visible = true
+		$sun_sprite.visible = false
 		update_dn_display()
 
 		
@@ -86,9 +90,9 @@ func setup_table_for(n:int):
 		p.add_to_group("player_group")
 		self.add_child(p)
 		if i < ww_n:
-			p.set_role("Loup Garou")
+			p.set_role("Loup Garou", false)
 		else:
-			p.set_role("Simple Villageois")
+			p.set_role("Simple Villageois", false)
 		p.set_player_name("Perso_%s"%i)
 		drop_n += drop_incerment
 	UI.update_progress()

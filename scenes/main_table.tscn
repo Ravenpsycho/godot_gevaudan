@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c1j64pkrx8mvo" path="res://scripts/main_table.gd" id="1_r5etq"]
 [ext_resource type="TileSet" uid="uid://cdbsl21q6a21y" path="res://images/gevaudan_tiles.tres" id="2_im7h4"]
 [ext_resource type="PackedScene" uid="uid://bugrspp1gnuce" path="res://scenes/main_ui_window.tscn" id="3_hd0mk"]
+[ext_resource type="Texture2D" uid="uid://cq42h6g1leagu" path="res://images/sun.png" id="4_e1ioh"]
 [ext_resource type="PackedScene" uid="uid://dj2k0lha3pi3x" path="res://scenes/drop_spot.tscn" id="4_ts2wc"]
 [ext_resource type="Texture2D" uid="uid://cfc2mg5m0cl8r" path="res://images/moon.png" id="5_njjyx"]
 
@@ -92,6 +93,12 @@ position = Vector2(391, 387)
 
 [node name="drop_spot22" parent="." unique_id=2086275309 instance=ExtResource("4_ts2wc")]
 position = Vector2(391, 268)
+
+[node name="sun_sprite" type="Sprite2D" parent="." unique_id=1482364296]
+visible = false
+position = Vector2(883.99994, 30)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_e1ioh")
 
 [node name="night_overlay" type="ColorRect" parent="." unique_id=1047846393]
 offset_right = 1260.0

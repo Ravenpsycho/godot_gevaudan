@@ -223,7 +223,7 @@ func snap_back(to_pos):
 	tween = get_tree().create_tween()
 	tween.tween_property(self, "position", to_pos, delay)
 						
-func set_role(role_name:String):
+func set_role(role_name:String, with_update:bool=true):
 	role = role_name
 	if role_name in WOLVES:
 		is_wherewolf = true
@@ -236,7 +236,8 @@ func set_role(role_name:String):
 		role_changed.emit(short)
 	else:	
 		role_changed.emit(role_name)
-	UI.update_progress()
+	if with_update:
+		UI.update_progress()
 		
 func set_player_name(s:String):
 	self.name = s
