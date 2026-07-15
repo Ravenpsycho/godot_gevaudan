@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bugrspp1gnuce"]
+[gd_scene format=3 uid="uid://bugrspp1gnuce"]
 
-[ext_resource type="Script" path="res://scripts/main_ui_window.gd" id="1_ls5bf"]
-[ext_resource type="Script" path="res://scripts/log_stream.gd" id="2_pvsm5"]
+[ext_resource type="Script" uid="uid://dcxnrnjswridf" path="res://scripts/main_ui_window.gd" id="1_ls5bf"]
+[ext_resource type="Script" uid="uid://dpnyu1i0aeqrv" path="res://scripts/log_stream.gd" id="2_pvsm5"]
 
-[node name="main_UI" type="Control"]
+[node name="main_UI" type="Control" unique_id=1130380192]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,14 +12,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ls5bf")
 
-[node name="status_display" type="VBoxContainer" parent="."]
+[node name="status_display" type="VBoxContainer" parent="." unique_id=1367402693]
 layout_mode = 0
 offset_left = 1260.0
 offset_right = 1560.0
 offset_bottom = 900.0
 
-[node name="progress_status" type="Label" parent="status_display"]
-custom_minimum_size = Vector2(0, 150)
+[node name="progress_status" type="Label" parent="status_display" unique_id=633420156]
+custom_minimum_size = Vector2(50, 150)
 layout_mode = 2
 text = "Villageois : X/Y
 Loups : X/Y
@@ -27,29 +27,29 @@ Solitaire 1: X/Y
 Solitaire 2: X/Y"
 autowrap_mode = 1
 
-[node name="reset_lovers" type="Button" parent="status_display"]
+[node name="reset_lovers" type="Button" parent="status_display" unique_id=1786686044]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Annuler Amoureux"
 
-[node name="reset_mentor" type="Button" parent="status_display"]
+[node name="reset_mentor" type="Button" parent="status_display" unique_id=1028217684]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Annuler Mentor"
 
-[node name="reset powers" type="Button" parent="status_display"]
+[node name="reset powers" type="Button" parent="status_display" unique_id=314464026]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Annuler Pouvoirs"
 
-[node name="log_stream" type="ItemList" parent="status_display"]
+[node name="log_stream" type="ItemList" parent="status_display" unique_id=1363567988]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.607843, 0.0784314, 0.215686, 1)
 script = ExtResource("2_pvsm5")
 
-[node name="add_player" type="Button" parent="."]
-layout_mode = 2
+[node name="add_player" type="Button" parent="." unique_id=202752699]
+layout_mode = 0
 offset_left = 60.0
 offset_right = 240.0
 offset_bottom = 60.0

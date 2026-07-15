@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c552pjexbt7he"]
+[gd_scene format=3 uid="uid://c552pjexbt7he"]
 
-[ext_resource type="Script" path="res://scripts/interact_menu.gd" id="1_0hhqw"]
+[ext_resource type="Script" uid="uid://bq3a0ipld3dlq" path="res://scripts/interact_menu.gd" id="1_0hhqw"]
 
-[node name="interact_menu" type="Control"]
+[node name="interact_menu" type="Control" unique_id=1523792407]
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
@@ -12,37 +12,39 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0hhqw")
 
-[node name="ReferenceRect" type="VBoxContainer" parent="."]
+[node name="ReferenceRect" type="VBoxContainer" parent="." unique_id=1474080578]
 layout_mode = 0
-offset_left = 81.0
-offset_top = -70.0
-offset_right = 217.0
-offset_bottom = 106.0
+offset_left = 72.0
+offset_top = -66.0
+offset_right = 208.0
+offset_bottom = 70.0
+alignment = 1
 
-[node name="Context" type="Button" parent="ReferenceRect"]
+[node name="Context" type="Button" parent="ReferenceRect" unique_id=46601301]
 layout_mode = 2
 text = "Mentor"
 
-[node name="Swap" type="Button" parent="ReferenceRect"]
+[node name="Swap" type="Button" parent="ReferenceRect" unique_id=1510182266]
 layout_mode = 2
 text = "Swap"
 
-[node name="Love" type="Button" parent="ReferenceRect"]
+[node name="Love" type="Button" parent="ReferenceRect" unique_id=1854553841]
 layout_mode = 2
 text = "In love with"
 
-[node name="Cancel" type="Button" parent="ReferenceRect"]
+[node name="Cancel" type="Button" parent="ReferenceRect" unique_id=1118951587]
 layout_mode = 2
 text = "Cancel"
 
-[node name="base_actions" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = -224.0
-offset_top = -70.0
-offset_right = -88.0
-offset_bottom = 66.0
+[node name="base_actions" type="VBoxContainer" parent="." unique_id=2067302127]
+layout_mode = 0
+offset_left = -200.0
+offset_top = -67.0
+offset_right = -64.0
+offset_bottom = 69.0
+alignment = 1
 
-[node name="Designer" type="Button" parent="base_actions"]
+[node name="Designer" type="Button" parent="base_actions" unique_id=2042147815]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.909804, 0, 0, 1)
 text = "Designer!"

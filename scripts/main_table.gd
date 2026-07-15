@@ -19,7 +19,6 @@ func _ready() -> void:
 	var init_menu = pl.instantiate()
 	self.add_child(init_menu)
 	UI = $main_UI
-	update_dn_display()
 	
 func next_phase():
 	if game_params["day_night"] == "Nuit":
@@ -53,11 +52,30 @@ func update_dn_display():
 		$prev_phase.visible = true
 	
 	
+func start_game():
+	var td = Time.get_datetime_dict_from_system()
+	game_params["game_start"] = td
+	var y = td.year
+	var m = td.month
+	var d = td.day
+	var h = td.hour
+	var minutes = td.minute
+	var savename = "gevaudan_save_%s_%s_%s_%s:%s" % [y,m,d,h,minutes]
+	game_params["savename"] = savename
+	UI.log("Game starts at: %s:%s" % [h, minutes])
+	update_dn_display()
+	$start_game.visible = false
+	$next_phase.visible = true
+	
+
 func setup_table_for(n:int):
+	@warning_ignore("integer_division")
 	var ww_n = int(n/3)
 	var drop_pos: Vector2 = get_node("drop_spot").position
 	var loader = preload("res://scenes/player_tile.tscn")
+	@warning_ignore("integer_division")
 	var drop_incerment : int = int(22/n) 
+	@warning_ignore("unused_variable")
 	var drop_name: String = "drop_spot"
 	var drop_n: int = 1
 	for i in range(0,n):
@@ -73,6 +91,7 @@ func setup_table_for(n:int):
 			p.set_role("Simple Villageois")
 		p.set_player_name("Perso_%s"%i)
 		drop_n += drop_incerment
+	UI.update_progress()
 		
 	
 func add_player():
@@ -84,6 +103,7 @@ func add_player():
 	new_player.add_to_group("player_group")
 	self.add_child(new_player, true)
 	new_player.call_name_changer()
+	UI.update_progress()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -106,6 +126,13 @@ func update_counts(verbose:bool = false):
 	live_villagers = villagers
 	live_wherewolves = ww
 	return [villagers, ww]
+	
+func check_role(r:String):
+	players = get_tree().get_nodes_in_group("player_group")
+	for p in players:
+		if p.role == r:
+			return true
+	return false
 
 
 func _on_next_phase_pressed() -> void:
@@ -114,3 +141,7 @@ func _on_next_phase_pressed() -> void:
 
 func _on_prev_phase_pressed() -> void:
 	prev_phase()
+
+
+func _on_start_game_pressed() -> void:
+	start_game()

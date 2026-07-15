@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj6un73l73y1w"]
+[gd_scene format=3 uid="uid://dj6un73l73y1w"]
 
-[ext_resource type="Script" path="res://scripts/window.gd" id="1_bx54x"]
-[ext_resource type="Script" path="res://scripts/popup_menu.gd" id="2_m5c2g"]
+[ext_resource type="Script" uid="uid://cuyfkok1npew6" path="res://scripts/window.gd" id="1_bx54x"]
+[ext_resource type="Script" uid="uid://cc7t3wt7tnqmy" path="res://scripts/death_menu.gd" id="2_25xny"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=2064263772]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,12 +11,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Window" type="Window" parent="."]
+[node name="Window" type="Window" parent="." unique_id=1608646923]
+oversampling_override = 1.0
 position = Vector2i(50, 300)
 script = ExtResource("1_bx54x")
 
-[node name="PopupMenu" type="PopupMenu" parent="."]
+[node name="PopupMenu" type="PopupMenu" parent="." unique_id=997002671]
+oversampling_override = 1.0
 position = Vector2i(50, 300)
 visible = true
 unfocusable = true
-script = ExtResource("2_m5c2g")
+script = ExtResource("2_25xny")

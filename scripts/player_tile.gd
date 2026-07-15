@@ -8,6 +8,11 @@ var is_draggable:bool = false
 var delay:float = 0.1
 var mouse_offset
 var card_overlay: Sprite2D
+var love_overlay: bool = false
+var mentor_overlay: bool = false
+var raven_overlay: bool = false
+var savage_overlay: bool = false
+var flute_overlay: bool = false
 var drop_spots
 var players: Array[Node]
 var used_power: bool = false
@@ -19,12 +24,20 @@ var mentor
 var tween
 var role: String = "Simple Villageois"
 var line_edit:LineEdit
-var alive = true
+var alive: bool = true
 var cause_of_death: String = ""
 var is_wherewolf: bool = false
 var mentor_to: PlayerTile
 var name_changer
 var player_name: String
+
+const OVERLAYS: Array = [
+	"love_overlay",
+	"mentor_overlay",
+	"raven_overlay",
+	"savage_overlay",
+	"flute_overlay"
+]
 
 const WOLVES: Array =[
 	"Loup Garou",
@@ -99,6 +112,16 @@ func _input(event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	pass
 	
+func update_overlays():
+	if !alive:
+		$dead_overlay.visible = true
+	else:
+		$dead_overlay.visible = false
+	for o in OVERLAYS:
+		var n = get_node(o)
+		n.set("visible", self.get(o))
+	UI.update_progress()
+	
 func process_dropspot(drop_spot):
 	if drop_spot.has_overlapping_areas() and drop_spot.get_overlapping_areas().has(self.get_node("collision_area")):
 		tween = get_tree().create_tween()
@@ -120,30 +143,31 @@ func process_dropspot(drop_spot):
 			
 func call_name_changer():
 	var nc = preload("res://scenes/name_changer.tscn").instantiate()
-	var main_table = get_tree().get_first_node_in_group("main_table")
 	nc.get_node("container/info_label").text = "infos pour %s" % self.name
 	nc.set_player(self)
 	main_table.add_child(nc)
 			
 func infect():
 	is_wherewolf = true
-	self.get_node("savage_overlay").visible = true
+	savage_overlay = true
+	update_overlays()
 
 func disinfect():
 	if role not in WOLVES:
 		is_wherewolf = false
-	self.get_node("savage_overlay").visible = false
+	self.savage_overlay = false
+	update_overlays()
 	
 func die():
 	alive = false
-	UI.log("%s <%s> est mort!" % [name, role])
-	self.get_node("dead_overlay").visible = true
+	UI.log("%s <%s> est mort!" % [name, role]) 
 	if in_love_with and in_love_with.alive:
 		in_love_with.toggle_death()
 		UI.log("--> de chagrin!" % in_love_with.name)
 	if mentor_to and mentor_to.alive:
-		mentor_to.get_node("savage_overlay").visible=true
+		mentor_to.savage_overlay=true
 		mentor_to.is_wherewolf = true
+		mentor_to.update_overlays()
 	
 func come_back():
 	alive = true
@@ -158,11 +182,13 @@ func toggle_death():
 	if alive:
 		die()
 		main_table.update_counts(true)
+		update_overlays()
 		return true
 	else:
 		come_back()
 		cause_of_death = ""
 		main_table.update_counts(true)
+		update_overlays()
 		return false
 
 func toggle_rage():
@@ -210,6 +236,7 @@ func set_role(role_name:String):
 		role_changed.emit(short)
 	else:	
 		role_changed.emit(role_name)
+	UI.update_progress()
 		
 func set_player_name(s:String):
 	self.name = s
@@ -221,4 +248,12 @@ func unaccent(s:String):
 	s=s.replace("û", "u")
 	s=s.replace("à", "a")
 	return s
-	
+
+func save():
+	var savedict = {
+		"name" : name,
+		"role" : role,
+	}
+	for o in OVERLAYS:
+		savedict[0] = self.get(o)
+	return savedict

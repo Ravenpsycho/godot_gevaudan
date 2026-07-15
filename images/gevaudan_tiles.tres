@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cdbsl21q6a21y"]
+[gd_resource type="TileSet" format=3 uid="uid://cdbsl21q6a21y"]
 
 [ext_resource type="Texture2D" uid="uid://btes3r46goo3a" path="res://images/gevaudan_tiles_mat.png" id="2_02ma5"]
 [ext_resource type="Texture2D" uid="uid://1camc2exjwry" path="res://images/villager_60x60.png" id="3_3f2bo"]

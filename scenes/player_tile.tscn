@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctm8ed14uw26i"]
+[gd_scene format=3 uid="uid://ctm8ed14uw26i"]
 
 [ext_resource type="Texture2D" uid="uid://d3g0jfbo70x6u" path="res://images/card_back_60x60.png" id="1_fv7dl"]
-[ext_resource type="Script" path="res://scripts/player_tile.gd" id="1_kswc2"]
+[ext_resource type="Script" uid="uid://326bhr8e2m1s" path="res://scripts/player_tile.gd" id="1_kswc2"]
 [ext_resource type="Texture2D" uid="uid://b625ocfpvfhew" path="res://images/dead halo.png" id="3_8ykl0"]
 [ext_resource type="PackedScene" uid="uid://c552pjexbt7he" path="res://scenes/interact_menu.tscn" id="4_45pth"]
 [ext_resource type="Texture2D" uid="uid://v3ibxosxwxb3" path="res://images/roles/Dos-Cartes.png" id="4_prgbf"]
@@ -9,67 +9,67 @@
 [ext_resource type="Texture2D" uid="uid://bvrx7m47a6kid" path="res://images/mentor.png" id="6_77ae4"]
 [ext_resource type="Texture2D" uid="uid://44tnwvblyymx" path="res://images/ww_head.png" id="7_w7rvu"]
 [ext_resource type="Texture2D" uid="uid://jgun5gto7knw" path="res://images/roles/Plumes du corbeau.png" id="8_2dag5"]
-[ext_resource type="Script" path="res://scripts/player_role_label.gd" id="9_bknka"]
-[ext_resource type="Script" path="res://scripts/player_name_label.gd" id="9_ecd3o"]
+[ext_resource type="Script" uid="uid://b5uwhko3fn2mc" path="res://scripts/player_role_label.gd" id="9_bknka"]
+[ext_resource type="Script" uid="uid://821osr364hvh" path="res://scripts/player_name_label.gd" id="9_ecd3o"]
 [ext_resource type="Texture2D" uid="uid://bni7klo1ya3j2" path="res://images/flute_overlay.png" id="11_v7kp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e325f"]
 size = Vector2(62, 65)
 
-[node name="player_tile" type="Sprite2D" groups=["player_group"]]
+[node name="player_tile" type="Sprite2D" unique_id=892134716 groups=["player_group"]]
 texture = ExtResource("1_fv7dl")
 script = ExtResource("1_kswc2")
 
-[node name="dead_overlay" type="Sprite2D" parent="."]
+[node name="dead_overlay" type="Sprite2D" parent="." unique_id=401137545]
 visible = false
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("3_8ykl0")
 
-[node name="card_overlay" type="Sprite2D" parent="."]
+[node name="card_overlay" type="Sprite2D" parent="." unique_id=1712512328]
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("4_prgbf")
 
-[node name="love_overlay" type="Sprite2D" parent="."]
+[node name="love_overlay" type="Sprite2D" parent="." unique_id=1692486969]
 visible = false
 position = Vector2(21, -20)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("4_t02xe")
 
-[node name="mentor_overlay" type="Sprite2D" parent="."]
+[node name="mentor_overlay" type="Sprite2D" parent="." unique_id=645835986]
 visible = false
 position = Vector2(-22, -22)
 rotation = -3.14159
 scale = Vector2(0.0479778, -0.0496229)
 texture = ExtResource("6_77ae4")
 
-[node name="raven_overlay" type="Sprite2D" parent="."]
+[node name="raven_overlay" type="Sprite2D" parent="." unique_id=1048353464]
 visible = false
 position = Vector2(20, 18)
 rotation = -3.14159
 scale = Vector2(0.03, -0.031)
 texture = ExtResource("8_2dag5")
 
-[node name="savage_overlay" type="Sprite2D" parent="."]
+[node name="savage_overlay" type="Sprite2D" parent="." unique_id=967581599]
 visible = false
 position = Vector2(-24, -29)
 scale = Vector2(0.0179701, 0.0221765)
 texture = ExtResource("7_w7rvu")
 
-[node name="flute_overlay" type="Sprite2D" parent="."]
+[node name="flute_overlay" type="Sprite2D" parent="." unique_id=529202013]
 visible = false
 position = Vector2(-23, 22)
 rotation = -3.14159
 scale = Vector2(0.1, -0.104)
 texture = ExtResource("11_v7kp2")
 
-[node name="collision_area" type="Area2D" parent="."]
+[node name="collision_area" type="Area2D" parent="." unique_id=1759458869]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_area" unique_id=2054247129]
 visible = false
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_e325f")
 
-[node name="player_name_label" type="Label" parent="."]
+[node name="player_name_label" type="Label" parent="." unique_id=882013699]
 texture_filter = 5
 anchors_preset = 12
 anchor_top = 1.0
@@ -90,7 +90,7 @@ horizontal_alignment = 1
 script = ExtResource("9_ecd3o")
 metadata/_edit_use_anchors_ = true
 
-[node name="player_role_label" type="Label" parent="."]
+[node name="player_role_label" type="Label" parent="." unique_id=1491745976]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -111,14 +111,12 @@ horizontal_alignment = 1
 script = ExtResource("9_bknka")
 metadata/_edit_use_anchors_ = true
 
-[node name="interact_menu" parent="." instance=ExtResource("4_45pth")]
+[node name="interact_menu" parent="." unique_id=1214740044 instance=ExtResource("4_45pth")]
 visible = false
 z_index = 5
 z_as_relative = true
-offset_left = -30.0
-offset_top = -29.0
-offset_right = -30.0
-offset_bottom = -29.0
+offset_right = -60.0
+offset_bottom = -60.0
 metadata/_edit_use_anchors_ = true
 
 [connection signal="interact_with" from="." to="interact_menu" method="_on_player_tile_interact_with"]

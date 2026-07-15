@@ -52,17 +52,20 @@ func _process(_delta: float) -> void:
 		if ctx.text == "Mentor":
 			parent_player.mentor = parent_target
 			parent_target.mentor_to = parent_player
-			parent_target.get_node("mentor_overlay").visible = true
+			parent_target.mentor_overlay = true
 			UI.log("%s choisit %s comme Mentor!" % [parent_player.name, parent_target.name])
+			parent_target.update_overlays()
 			self.visible = false
 		if ctx.text == "Plumes":
 			reset_feathers()
-			parent_target.get_node("raven_overlay").visible = true
+			parent_target.raven_overlay = true
 			UI.log("%s reçoit les plumes!" % parent_target.name)
+			parent_target.update_overlays()
 			self.visible = false
 		if ctx.text == "Charmer":
-			parent_target.get_node("flute_overlay").visible = true
+			parent_target.flute_overlay = true
 			UI.log("%s tombe sous le charme!" % parent_target.name)
+			parent_target.update_overlays()
 			self.visible = false
 		if ctx.text == "Sauver":
 			UI.log("La sorcière sauve %s!" % parent_target.name)
