@@ -22,14 +22,14 @@ Un projet d'aide de jeu pour Maître.sse de Jeu type Loup Garous de Crenin.
 - [ ] Overlay: Désigné
 - [ ] Overlay: Ours qui Grogne
 ### Gameplay
-- [ ] Implémenter: Jour et Nuit
+- [X] Implémenter: Jour et Nuit
 - [ ] Implémenter: Sauvegarde et retour
 - [ ] Implémenter: Nombre de votes
-- [ ] Implémenter: Compteurs et fin de jeu
-- [ ] Implémenter: noms MJ et Heure de début/fin
+- [X] Implémenter: Compteurs et fin de jeu
+- [X] Implémenter: noms MJ et Heure de début/fin
 - [ ] Implémenter: export log
 ### Finaliser
-- [ ] Progression des villageois, LG et solitaires
+- [X] Progression des villageois, LG et solitaires
 
 ## "Make it Pretty"
 - [ ] Textures moins moches
