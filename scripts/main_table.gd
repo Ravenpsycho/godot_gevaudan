@@ -10,7 +10,7 @@ var live_villagers
 var live_wherewolves
 var game_params: Dictionary = {
 	"day_night": "Nuit",
-	"count": 1,
+	"dn_count": 1,
 	"last_protected": ""
 }
 
@@ -32,7 +32,7 @@ func next_phase():
 		update_dn_display()
 	else:
 		game_params["day_night"] = "Nuit"
-		game_params["count"] += 1
+		game_params["dn_count"] += 1
 		night_routine()
 		$night_overlay.visible = true
 		$sun_sprite.visible = false
@@ -62,21 +62,28 @@ func establish_night_text():
 func prev_phase():
 	if game_params["day_night"] == "Nuit":
 		game_params["day_night"] = "Jour"
-		game_params["count"] -= 1
-		$night_overlay.visible = false
-		$sun_sprite.visible = true
-		update_dn_display()
+		game_params["dn_count"] -= 1
+		set_day()
 	else:
 		game_params["day_night"] = "Nuit"
-		$night_overlay.visible = true
-		$sun_sprite.visible = false
-		update_dn_display()
+		set_night()
 
-		
+func set_day():
+	$night_overlay.visible = false
+	$sun_sprite.visible = true
+
+func set_night():
+	$night_overlay.visible = true
+	$sun_sprite.visible = false
+	
 func update_dn_display():
-	UI.log("---%s %s---" % [game_params["day_night"], game_params["count"]])
-	$dn_label.text = "%s %s" % [game_params["day_night"], game_params["count"]]
-	if game_params["day_night"] == "Nuit" and game_params["count"] == 1:
+	UI.log("---%s %s---" % [game_params["day_night"], int(game_params["dn_count"])])
+	$dn_label.text = "%s %s" % [game_params["day_night"], int(game_params["dn_count"])]
+	if game_params["day_night"] == "Nuit":
+		set_night()
+	else:
+		set_day()
+	if game_params["day_night"] == "Nuit" and game_params["dn_count"] == 1:
 		$prev_phase.visible = false
 	else:
 		$prev_phase.visible = true
@@ -180,21 +187,6 @@ func _process(_delta: float) -> void:
 func arrival_spot_free():
 	return !self.get_node("arrival_spot").has_overlapping_areas()
 	
-func update_counts(verbose:bool = false):
-	players = get_tree().get_nodes_in_group("player_group")
-	var villagers = 0
-	var ww = 0
-	for p:PlayerTile in players:
-		if p.is_wherewolf and p.alive:
-			ww += 1
-		elif p.alive:
-			villagers += 1
-	if verbose:
-		print([villagers, ww])
-	live_villagers = villagers
-	live_wherewolves = ww
-	return [villagers, ww]
-	
 func check_role(r:String):
 	players = get_tree().get_nodes_in_group("player_group")
 	for p in players:
@@ -218,13 +210,70 @@ func reset_overlay_for_all(overlay_name:String):
 		p.set(overlay_name, false)
 		p.update_overlays()
 
+func save():
+	var savedict = {
+		"filename" : "MAIN_TABLE",
+		"game_params": game_params
+	}
+	return savedict
+	
+
 func _on_next_phase_pressed() -> void:
 	next_phase()
-
 
 func _on_prev_phase_pressed() -> void:
 	prev_phase()
 
-
 func _on_start_game_pressed() -> void:
 	start_game()
+	
+func save_game():
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save_nodes = get_tree().get_nodes_in_group("save_group")
+	for node in save_nodes:
+		if node.scene_file_path.is_empty():
+			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
+			continue
+		if !node.has_method("save"):
+			print("persistent node '%s' is missing a save() function, skipped" % node.name)
+			continue
+
+		var node_data = node.call("save")
+		var json_string = JSON.stringify(node_data)
+		
+		save_file.store_line(json_string)
+
+func load_game():
+	if not FileAccess.file_exists("user://savegame.save"):
+		return # Error! We don't have a save to load.
+	var save_nodes = get_tree().get_nodes_in_group("save_group")
+	for i in save_nodes:
+		if i.get_groups().has("player_group"):
+			i.queue_free()
+			UI.update_players()
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+		var node_data = json.data
+		if node_data["filename"] == "MAIN_TABLE":
+			game_params = node_data["game_params"]
+			update_dn_display()
+			continue
+		var new_object = load(node_data["filename"]).instantiate()
+		get_node(node_data["parent"]).add_child(new_object)
+		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
+		const SKIP_LOAD: Array = [
+			"filename", "parent", "pos_x", "pos_y"
+		]
+		for i in node_data.keys():
+			if i in SKIP_LOAD:
+				continue
+			new_object.set(i, node_data[i])
+		if new_object.has_method("post_load_routine"):
+			new_object.post_load_routine()
+	get_tree()

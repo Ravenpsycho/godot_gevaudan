@@ -20,7 +20,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e325f"]
 size = Vector2(62, 65)
 
-[node name="player_tile" type="Sprite2D" unique_id=892134716 groups=["player_group"]]
+[node name="player_tile" type="Sprite2D" unique_id=892134716 groups=["player_group", "save_group"]]
 texture = ExtResource("1_fv7dl")
 script = ExtResource("1_kswc2")
 

@@ -122,3 +122,11 @@ func _on_reset_decision_pressed() -> void:
 	var overlays = ["voted_ww", "voted_village"]
 	for ol in overlays:
 		main_table.reset_overlay_for_all(ol)
+
+
+func _on_save_btn_pressed() -> void:
+	main_table.save_game()
+
+
+func _on_load_btn_pressed() -> void:
+	main_table.load_game()

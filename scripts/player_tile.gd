@@ -47,6 +47,11 @@ const OVERLAYS: Array = [
 	"voted_ww"
 ]
 
+const RELATIONS: Array = [
+	"in_love_with",
+	"mentor"
+]
+
 const WOLVES: Array =[
 	"Loup Garou",
 	"Loup Garou Blanc",
@@ -134,7 +139,6 @@ func process_dropspot(drop_spot):
 	var cond1 = drop_spot.has_overlapping_areas()
 	var cond2 = drop_spot.get_overlapping_areas().has(self.get_node("collision_area"))
 	if cond1 and cond2:
-		print(main_table.neighbor_is_wherewolf(self))
 		tween = get_tree().create_tween()
 		if drop_spot.name == "cemetary":
 			if self.protected_overlay:
@@ -202,13 +206,11 @@ func come_back():
 func toggle_death():
 	if alive:
 		die()
-		main_table.update_counts(true)
 		update_overlays()
 		return true
 	else:
 		come_back()
 		cause_of_death = ""
-		main_table.update_counts(true)
 		update_overlays()
 		return false
 
@@ -261,6 +263,7 @@ func set_role(role_name:String, with_update:bool=true):
 		
 func set_player_name(s:String):
 	self.name = s
+	self.player_name = s
 	name_changed.emit(s)
 	
 func unaccent(s:String):
@@ -269,12 +272,33 @@ func unaccent(s:String):
 	s=s.replace("û", "u")
 	s=s.replace("à", "a")
 	return s
-
+	
+func set_relation_with_name(relation:String, with:String):
+	players = get_tree().get_nodes_in_group("player_group")
+	for p in players:
+		if p.name == with and relation in RELATIONS:
+			set(relation, p)
+		
 func save():
 	var savedict = {
-		"name" : name,
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y,
+		"player_name" : player_name,
 		"role" : role,
+		"is_wherewolf": is_wherewolf,
+		"alive": alive,
 	}
 	for o in OVERLAYS:
 		savedict[0] = self.get(o)
+	if mentor:
+		savedict["mentor_name"] = mentor.name
+	if in_love_with:
+		savedict["lover_name"] = mentor.name
 	return savedict
+
+func post_load_routine():
+	set_role(role)
+	set_player_name(player_name)
+	update_overlays()

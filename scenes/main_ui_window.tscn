@@ -53,6 +53,20 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.607843, 0.0784314, 0.215686, 1)
 script = ExtResource("2_pvsm5")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="status_display" unique_id=339009867]
+layout_mode = 2
+alignment = 1
+
+[node name="save_btn" type="Button" parent="status_display/HBoxContainer" unique_id=905718069]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sauvegarder"
+
+[node name="load_btn" type="Button" parent="status_display/HBoxContainer" unique_id=808417107]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Charger"
+
 [node name="add_player" type="Button" parent="." unique_id=202752699]
 layout_mode = 0
 offset_left = 60.0
@@ -65,4 +79,6 @@ text = "+Villageois"
 [connection signal="pressed" from="status_display/reset_mentor" to="." method="_on_reset_mentor_pressed"]
 [connection signal="pressed" from="status_display/reset_decision" to="." method="_on_reset_decision_pressed"]
 [connection signal="pressed" from="status_display/reset powers" to="." method="_on_reset_powers_pressed"]
+[connection signal="pressed" from="status_display/HBoxContainer/save_btn" to="." method="_on_save_btn_pressed"]
+[connection signal="pressed" from="status_display/HBoxContainer/load_btn" to="." method="_on_load_btn_pressed"]
 [connection signal="button_up" from="add_player" to="." method="_on_add_player_button_up"]
