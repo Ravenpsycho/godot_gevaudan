@@ -28,7 +28,7 @@ scale = Vector2(4.5, 3.312)
 [node name="delete_player" parent="." unique_id=774825896 instance=ExtResource("4_ts2wc")]
 position = Vector2(1231, 869)
 
-[node name="drop_spot" parent="." unique_id=1775957469 instance=ExtResource("4_ts2wc")]
+[node name="drop_spot1" parent="." unique_id=1775957469 instance=ExtResource("4_ts2wc")]
 position = Vector2(391, 150)
 
 [node name="drop_spot2" parent="." unique_id=1698741911 instance=ExtResource("4_ts2wc")]

@@ -11,7 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://jgun5gto7knw" path="res://images/roles/Plumes du corbeau.png" id="8_2dag5"]
 [ext_resource type="Script" uid="uid://b5uwhko3fn2mc" path="res://scripts/player_role_label.gd" id="9_bknka"]
 [ext_resource type="Script" uid="uid://821osr364hvh" path="res://scripts/player_name_label.gd" id="9_ecd3o"]
+[ext_resource type="Texture2D" uid="uid://bct4me8xjid2r" path="res://images/protected_overlay.png" id="10_73oru"]
+[ext_resource type="Texture2D" uid="uid://hc7g713iyxs7" path="res://images/sword.png" id="11_r1sgu"]
 [ext_resource type="Texture2D" uid="uid://bni7klo1ya3j2" path="res://images/flute_overlay.png" id="11_v7kp2"]
+[ext_resource type="Texture2D" uid="uid://bn6nnb0u25vjm" path="res://images/voted_ww.png" id="12_d4gtn"]
+[ext_resource type="Texture2D" uid="uid://dbm6mo8vp772p" path="res://images/voted_village.png" id="13_soxnc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e325f"]
 size = Vector2(62, 65)
@@ -31,7 +35,7 @@ texture = ExtResource("4_prgbf")
 
 [node name="love_overlay" type="Sprite2D" parent="." unique_id=1692486969]
 visible = false
-position = Vector2(21, -20)
+position = Vector2(24, -25.000002)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("4_t02xe")
 
@@ -61,6 +65,30 @@ position = Vector2(-23, 22)
 rotation = -3.14159
 scale = Vector2(0.1, -0.104)
 texture = ExtResource("11_v7kp2")
+
+[node name="tetanos_overlay" type="Sprite2D" parent="." unique_id=1596059222]
+visible = false
+position = Vector2(24.999996, 4)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("11_r1sgu")
+
+[node name="voted_ww" type="Sprite2D" parent="." unique_id=997036903]
+visible = false
+position = Vector2(9.999998, 3)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("12_d4gtn")
+
+[node name="protected_overlay" type="Sprite2D" parent="." unique_id=687758050]
+visible = false
+position = Vector2(0, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_73oru")
+
+[node name="voted_village" type="Sprite2D" parent="." unique_id=1484685559]
+visible = false
+position = Vector2(-2, 15)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("13_soxnc")
 
 [node name="collision_area" type="Area2D" parent="." unique_id=1759458869]
 

@@ -3,7 +3,7 @@ extends Sprite2D
 class_name PlayerTile
 
 var UI: MainUI
-var main_table
+var main_table: MainTable
 var is_draggable:bool = false
 var delay:float = 0.1
 var mouse_offset
@@ -13,6 +13,10 @@ var mentor_overlay: bool = false
 var raven_overlay: bool = false
 var savage_overlay: bool = false
 var flute_overlay: bool = false
+var protected_overlay: bool = false
+var tetanos_overlay: bool = false
+var voted_ww: bool = false
+var voted_village: bool = false
 var drop_spots
 var players: Array[Node]
 var used_power: bool = false
@@ -36,7 +40,11 @@ const OVERLAYS: Array = [
 	"mentor_overlay",
 	"raven_overlay",
 	"savage_overlay",
-	"flute_overlay"
+	"flute_overlay",
+	"protected_overlay",
+	"tetanos_overlay",
+	"voted_village",
+	"voted_ww"
 ]
 
 const WOLVES: Array =[
@@ -46,11 +54,11 @@ const WOLVES: Array =[
 	"Infect Père des Loups"
 ]
 
-const ALL_ROLES: Array = ['Enfant Sauvage', 'Juge Etourdi', 'Abominable Sectaire', 
+const ALL_ROLES: Array = ['Enfant Sauvage', 'Juge Etourdi', 'Abominable Sectaire', "Deux Soeurs",
 'Bouc Emissaire', 'Voleur', 'Salvateur', 'Loup Garou', 'Renard', 'Assassin', 'Ancien du Village', 
 'Voyante', 'Petite Fille', 'Comédien', 'Simple Villageois', 'Joueur de flûte', 'Demi démon', 
 'Corbeau', 'Cupidon Amoureux', 'Sorcière', "Montreur d'Ours", 'Loup Garou Blanc', 'Pyromane', 
-'Innocent du Village', 'Nécromancien', "Chevalier à l'épée Rouillée", 
+'Innocent du Village', 'Nécromancien', "Chevalier à l'épée Rouillée", "Trois Frères",
 'Chasseur', 'Ange', 'Chien Loup', 'Dictateur', 'Fossoyeur', 'Grand Méchant Loup',
 'Infect Père des Loups']
 
@@ -123,9 +131,16 @@ func update_overlays():
 	UI.update_progress()
 	
 func process_dropspot(drop_spot):
-	if drop_spot.has_overlapping_areas() and drop_spot.get_overlapping_areas().has(self.get_node("collision_area")):
+	var cond1 = drop_spot.has_overlapping_areas()
+	var cond2 = drop_spot.get_overlapping_areas().has(self.get_node("collision_area"))
+	if cond1 and cond2:
+		print(main_table.neighbor_is_wherewolf(self))
 		tween = get_tree().create_tween()
 		if drop_spot.name == "cemetary":
+			if self.protected_overlay:
+				tween.tween_property(self, "position", origin_pos, delay)
+				UI.log("%s protégé par le salvateur!" % self.name)
+				return
 			self.toggle_death()
 			tween.tween_property(self, "position", origin_pos, delay)
 			if !alive:
@@ -160,10 +175,14 @@ func disinfect():
 	
 func die():
 	alive = false
-	UI.log("%s <%s> est mort!" % [name, role]) 
+	var dead_ol = $dead_overlay
+	dead_ol.visible = true
+	UI.log("%s <%s> est mort!" % [name, role])
 	if in_love_with and in_love_with.alive:
 		in_love_with.toggle_death()
 		UI.log("--> de chagrin!" % in_love_with.name)
+	elif tetanos_overlay:
+		UI.log("--> le tétanos l'emporte!" % name)
 	if mentor_to and mentor_to.alive:
 		mentor_to.savage_overlay=true
 		mentor_to.is_wherewolf = true
@@ -171,6 +190,8 @@ func die():
 	
 func come_back():
 	alive = true
+	var dead_ol = $dead_overlay
+	dead_ol.visible = false
 	UI.log("%s <%s> ramené à la vie!" % [name, role])
 	get_node("dead_overlay").visible = false
 	if in_love_with and !in_love_with.alive:
@@ -227,9 +248,8 @@ func set_role(role_name:String, with_update:bool=true):
 	role = role_name
 	if role_name in WOLVES:
 		is_wherewolf = true
-	var counts = main_table.update_counts()
-	print("counts at role assign:")
-	print(counts)
+	else:
+		is_wherewolf = false
 	card_overlay.texture = load("res://images/roles/"+unaccent(role_name)+".png")
 	var short = SHORTNAMES.get(role_name)
 	if short:

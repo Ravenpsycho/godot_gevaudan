@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cil2ymuyny3e6"]
+[gd_scene format=3 uid="uid://cil2ymuyny3e6"]
 
-[ext_resource type="Script" path="res://scripts/name_changer.gd" id="1_6teia"]
-[ext_resource type="Script" path="res://scripts/role_list.gd" id="2_381hk"]
+[ext_resource type="Script" uid="uid://kyatsxorjgbs" path="res://scripts/name_changer.gd" id="1_6teia"]
+[ext_resource type="Script" uid="uid://bdkaqfpi2frda" path="res://scripts/role_list.gd" id="2_381hk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ourp6"]
 bg_color = Color(4.45209e-07, 0.365941, 0.125466, 1)
@@ -13,25 +13,25 @@ bg_color = Color(0.296379, 0.4329, 0.253909, 1)
 Button/styles/hover = SubResource("StyleBoxFlat_ourp6")
 Button/styles/normal = SubResource("StyleBoxFlat_i517m")
 
-[node name="name_changer" type="PanelContainer"]
+[node name="name_changer" type="PanelContainer" unique_id=846592943]
 offset_left = 595.0
 offset_top = 207.0
 offset_right = 995.0
 offset_bottom = 672.0
 script = ExtResource("1_6teia")
 
-[node name="container" type="VBoxContainer" parent="."]
+[node name="container" type="VBoxContainer" parent="." unique_id=948864415]
 z_index = 50
 custom_minimum_size = Vector2(400, 465)
 layout_mode = 2
 
-[node name="info_label" type="Label" parent="container"]
+[node name="info_label" type="Label" parent="container" unique_id=2089192050]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 0.776471)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Infos pour"
 
-[node name="LineEdit" type="LineEdit" parent="container"]
+[node name="LineEdit" type="LineEdit" parent="container" unique_id=1976766664]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -39,7 +39,7 @@ placeholder_text = "Enter Player Name:"
 alignment = 1
 expand_to_text_length = true
 
-[node name="role_filter" type="LineEdit" parent="container"]
+[node name="role_filter" type="LineEdit" parent="container" unique_id=1749136183]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -47,14 +47,14 @@ placeholder_text = "filter roles"
 alignment = 1
 expand_to_text_length = true
 
-[node name="role_list" type="ItemList" parent="container"]
-clip_contents = false
+[node name="role_list" type="ItemList" parent="container" unique_id=2059041893]
 custom_minimum_size = Vector2(0, 300)
+clip_contents = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 script = ExtResource("2_381hk")
 
-[node name="Button" type="Button" parent="container"]
+[node name="Button" type="Button" parent="container" unique_id=599270741]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme = SubResource("Theme_jtrli")

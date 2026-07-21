@@ -1,7 +1,6 @@
 extends Control
 class_name MainUI
 var players: Array[Node]
-var status: VBoxContainer
 var logger: ItemList
 var prog: Label
 var main_table: MainTable
@@ -9,7 +8,6 @@ var UI
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	status = $status_display
 	logger = $status_display/log_stream
 	prog = $status_display/progress_status
 	main_table = get_tree().get_first_node_in_group("main_table")
@@ -41,9 +39,13 @@ func _on_add_player_button_up() -> void:
 
 func _on_reset_powers_pressed() -> void:
 	update_players()
+	main_table.game_params["last_protected"] = ""
 	for p:PlayerTile in players:
 		p.used_power = false
 		p.disinfect()
+		for o in p.OVERLAYS:
+			p.set(o, false)
+		p.update_overlays()
 	main_table.update_counts()
 	
 func count_villagers() -> String:
@@ -114,3 +116,9 @@ func update_progress():
 	
 func update_players():
 	players = get_tree().get_nodes_in_group("player_group")
+
+
+func _on_reset_decision_pressed() -> void:
+	var overlays = ["voted_ww", "voted_village"]
+	for ol in overlays:
+		main_table.reset_overlay_for_all(ol)

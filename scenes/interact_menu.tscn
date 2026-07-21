@@ -14,9 +14,9 @@ script = ExtResource("1_0hhqw")
 
 [node name="ReferenceRect" type="VBoxContainer" parent="." unique_id=1474080578]
 layout_mode = 0
-offset_left = 72.0
+offset_left = 51.0
 offset_top = -66.0
-offset_right = 208.0
+offset_right = 187.0
 offset_bottom = 70.0
 alignment = 1
 
@@ -26,21 +26,21 @@ text = "Mentor"
 
 [node name="Swap" type="Button" parent="ReferenceRect" unique_id=1510182266]
 layout_mode = 2
-text = "Swap"
+text = "Chgt. Place"
 
 [node name="Love" type="Button" parent="ReferenceRect" unique_id=1854553841]
 layout_mode = 2
-text = "In love with"
+text = "Amoureux"
 
 [node name="Cancel" type="Button" parent="ReferenceRect" unique_id=1118951587]
 layout_mode = 2
-text = "Cancel"
+text = "Annuler"
 
 [node name="base_actions" type="VBoxContainer" parent="." unique_id=2067302127]
 layout_mode = 0
-offset_left = -200.0
+offset_left = -184.0
 offset_top = -67.0
-offset_right = -64.0
+offset_right = -48.0
 offset_bottom = 69.0
 alignment = 1
 

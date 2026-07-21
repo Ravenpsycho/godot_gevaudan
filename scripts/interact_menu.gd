@@ -1,4 +1,7 @@
 extends Control
+
+class_name Interactor
+
 var main_table: MainTable
 var parent_player:PlayerTile #The parent player
 var parent_target:PlayerTile #The parent target
@@ -72,9 +75,19 @@ func _process(_delta: float) -> void:
 			self.visible = false
 		if ctx.text == "Tétanos!":
 			UI.log("%s est infecté par le Tétanos!" % parent_target.name)
+			parent_target.tetanos_overlay = true
+			parent_target.update_overlays()
 			self.visible = false
 		if ctx.text == "Protéger":
+			if parent_target.name == main_table.game_params["last_protected"]:
+				UI.log("Pas possible! Déja protégé en dernier!!")
+				self.visible = false
+				return
+			reset_salvation()
 			UI.log("%s est protégé pour la nuit!" % parent_target.name)
+			main_table.game_params["last_protected"] = parent_target.name
+			parent_target.protected_overlay = true
+			parent_target.update_overlays()
 			self.visible = false
 		if ctx.text == "Prendre rôle":
 			UI.log("%s échange son rôle avec %s!" % [parent_player.name, parent_target.name])
@@ -132,6 +145,12 @@ func reset_lovers():
 	print("lovers reset!")
 	for p in players:
 		p.reset_love()
+		
+func reset_salvation():
+	for p in players:
+		p.protected_overlay = false
+		p.get_node("protected_overlay").visible = false
+	
 
 func reset_feathers():
 	print("feathers reset!")
@@ -166,8 +185,12 @@ func test_for_role(r:String):
 
 
 func _on_designer_pressed() -> void:
-	if main_table.game_params["day_night"] == "Night" :
-		UI.log("%s est désigné.e par la Meute!")
+	if main_table.game_params["day_night"] == "Nuit" :
+		parent_target.voted_ww = true
+		parent_target.update_overlays()
+		UI.log("%s est désigné.e par la Meute!" % parent_target.name)
 	else:
-		UI.log("%s est désigné.e par la foule!")
+		parent_target.voted_village = true
+		parent_target.update_overlays()
+		UI.log("%s est désigné.e par la foule!" % parent_target.name)
 		
