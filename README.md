@@ -8,8 +8,8 @@ Un projet d'aide de jeu pour Maître.sse de Jeu type Loup Garous de Crenin.
 - [X] Noms des rôles: Innocent du village, Juge sévère, Cupidon Amoureux
 ### Menus et coding
 - [X] Menu interactif: Chevalier épée rouillée
-- [ ] Menu interactif: Servante dévouée
-- [ ] Menu interactif: Salvateur
+- [ ] Menu interactif et Rôle: Servante dévouée
+- [X] Menu interactif: Salvateur
 - [X] Menu interactif: Infect
 - [X] Menu interactif: Voyante (log qui elle regarde)
 - [X] Menu interactif: Renard (log qui il regarde)
