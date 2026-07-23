@@ -54,6 +54,7 @@ func morning_routine():
 	if check_role("Salvateur"):
 		reset_overlay_for_all("protected_overlay")
 		UI.log("La protection du Salvateur\nne fait plus effet!")
+	establish_day_text()
 
 func night_routine():
 	reset_overlay_for_all("voted_village")
@@ -104,7 +105,10 @@ func establish_night_text():
 					total_text += "\n"
 	total_text = total_text.substr(0, len(total_text)-4)
 	$role_calling_list.text = total_text
-	
+
+func establish_day_text():
+	$role_calling_list.text = "Morts de la nuit >>\nLe Village Va délibérer."
+
 func prev_phase():
 	if game_params["day_night"] == "Nuit":
 		game_params["day_night"] = "Jour"
@@ -261,6 +265,18 @@ func check_role(r:String):
 	players = get_tree().get_nodes_in_group("player_group")
 	for p in players:
 		if p.role == r:
+			return true
+	return false
+	
+func check_overlay(o:String, only_alive:bool=true):
+	players = get_tree().get_nodes_in_group("player_group")
+	var cond1:bool
+	for p in players:
+		if only_alive:
+			cond1 = p.alive
+		else:
+			cond1 = true
+		if cond1 and p.get(o):
 			return true
 	return false
 

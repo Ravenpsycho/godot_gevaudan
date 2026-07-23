@@ -20,9 +20,14 @@ alignment = 1
 layout_mode = 2
 text = "ctx"
 
+[node name="Elire_Maire" type="Button" parent="ReferenceRect" unique_id=532395792]
+layout_mode = 2
+text = "Elire Maire"
+
 [node name="Cancel" type="Button" parent="ReferenceRect" unique_id=1118951587]
 layout_mode = 2
 text = "Annuler"
 
 [connection signal="pressed" from="ReferenceRect/Context" to="." method="_on_context_pressed"]
+[connection signal="pressed" from="ReferenceRect/Elire_Maire" to="." method="_on_elire_maire_pressed"]
 [connection signal="pressed" from="ReferenceRect/Cancel" to="." method="_on_cancel_pressed"]

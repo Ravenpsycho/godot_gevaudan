@@ -15,6 +15,7 @@ var savage_overlay: bool = false
 var flute_overlay: bool = false
 var protected_overlay: bool = false
 var tetanos_overlay: bool = false
+var mayor_overlay: bool = false
 var voted_ww: bool = false
 var voted_village: bool = false
 var drop_spots
@@ -43,6 +44,7 @@ const OVERLAYS: Array = [
 	"flute_overlay",
 	"protected_overlay",
 	"tetanos_overlay",
+	"mayor_overlay",
 	"voted_village",
 	"voted_ww"
 ]
@@ -165,8 +167,9 @@ func process_dropspot(drop_spot):
 			tween.tween_property(self, "position", drop_spot.position, delay)
 			var solo = $solo_menu
 			var context_btn = $solo_menu/ReferenceRect/Context
+			var mayor_btn = $solo_menu/ReferenceRect/Elire_Maire
 			solo.change_context()
-			if !(context_btn.text == ""):
+			if !(context_btn.text == "") or !(mayor_btn.text == ""):
 				solo.visible = true
 
 func call_name_changer():

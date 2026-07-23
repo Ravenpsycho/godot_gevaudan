@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bct4me8xjid2r" path="res://images/protected_overlay.png" id="10_73oru"]
 [ext_resource type="Texture2D" uid="uid://hc7g713iyxs7" path="res://images/sword.png" id="11_r1sgu"]
 [ext_resource type="Texture2D" uid="uid://bni7klo1ya3j2" path="res://images/flute_overlay.png" id="11_v7kp2"]
+[ext_resource type="Texture2D" uid="uid://f8718doom6nc" path="res://images/roles/Capitaine.png" id="11_vdxyi"]
 [ext_resource type="Texture2D" uid="uid://bn6nnb0u25vjm" path="res://images/voted_ww.png" id="12_d4gtn"]
 [ext_resource type="Texture2D" uid="uid://dbm6mo8vp772p" path="res://images/voted_village.png" id="13_soxnc"]
 [ext_resource type="PackedScene" uid="uid://bbt771rigxmgo" path="res://scenes/solo_menu.tscn" id="17_soxnc"]
@@ -66,6 +67,12 @@ position = Vector2(-23, 22)
 rotation = -3.14159
 scale = Vector2(0.1, -0.104)
 texture = ExtResource("11_v7kp2")
+
+[node name="mayor_overlay" type="Sprite2D" parent="." unique_id=1672890751]
+visible = false
+position = Vector2(60, -46)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("11_vdxyi")
 
 [node name="tetanos_overlay" type="Sprite2D" parent="." unique_id=1596059222]
 visible = false
