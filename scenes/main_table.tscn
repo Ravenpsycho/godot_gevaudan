@@ -19,81 +19,81 @@ tile_map_data = PackedByteArray("AAAJAAEAAgACAAAAAAAEAAMAAgAAAAEAAAAJAAcAAgACAAI
 tile_set = ExtResource("2_im7h4")
 
 [node name="cemetary" parent="." unique_id=1421515100 instance=ExtResource("4_ts2wc")]
-position = Vector2(150, 720)
-scale = Vector2(5, 6.666)
+position = Vector2(113, 516)
+scale = Vector2(4, 4.960001)
 
 [node name="arrival_spot" parent="." unique_id=635651404 instance=ExtResource("4_ts2wc")]
-position = Vector2(150, 120)
-scale = Vector2(4.5, 3.312)
+position = Vector2(113, 88)
+scale = Vector2(3.9400005, 2.672)
 
 [node name="delete_player" parent="." unique_id=774825896 instance=ExtResource("4_ts2wc")]
 position = Vector2(1231, 869)
 
 [node name="drop_spot1" parent="." unique_id=1775957469 instance=ExtResource("4_ts2wc")]
-position = Vector2(391, 150)
+position = Vector2(392, 152)
 
 [node name="drop_spot2" parent="." unique_id=1698741911 instance=ExtResource("4_ts2wc")]
-position = Vector2(511, 150)
+position = Vector2(512, 152)
 
 [node name="drop_spot3" parent="." unique_id=1768192665 instance=ExtResource("4_ts2wc")]
-position = Vector2(631, 150)
+position = Vector2(629, 152)
 
 [node name="drop_spot4" parent="." unique_id=903570987 instance=ExtResource("4_ts2wc")]
-position = Vector2(751, 150)
+position = Vector2(751, 152)
 
 [node name="drop_spot5" parent="." unique_id=879285102 instance=ExtResource("4_ts2wc")]
-position = Vector2(871, 150)
+position = Vector2(872, 152)
 
 [node name="drop_spot6" parent="." unique_id=263701714 instance=ExtResource("4_ts2wc")]
-position = Vector2(991, 150)
+position = Vector2(992, 152)
 
 [node name="drop_spot7" parent="." unique_id=1627102201 instance=ExtResource("4_ts2wc")]
-position = Vector2(1111, 151)
+position = Vector2(1112, 153)
 
 [node name="drop_spot8" parent="." unique_id=270151574 instance=ExtResource("4_ts2wc")]
-position = Vector2(1113, 272)
+position = Vector2(1114, 274)
 
 [node name="drop_spot9" parent="." unique_id=336311323 instance=ExtResource("4_ts2wc")]
-position = Vector2(1110, 390)
+position = Vector2(1111, 392)
 
 [node name="drop_spot10" parent="." unique_id=342441951 instance=ExtResource("4_ts2wc")]
-position = Vector2(1112, 510)
+position = Vector2(1113, 512)
 
 [node name="drop_spot11" parent="." unique_id=930414572 instance=ExtResource("4_ts2wc")]
-position = Vector2(1110, 630)
+position = Vector2(1111, 632)
 
 [node name="drop_spot12" parent="." unique_id=169236153 instance=ExtResource("4_ts2wc")]
-position = Vector2(1110, 749)
+position = Vector2(1111, 751)
 
 [node name="drop_spot13" parent="." unique_id=238283651 instance=ExtResource("4_ts2wc")]
-position = Vector2(991, 751)
+position = Vector2(992, 753)
 
 [node name="drop_spot14" parent="." unique_id=1158199868 instance=ExtResource("4_ts2wc")]
-position = Vector2(870, 750)
+position = Vector2(871, 752)
 
 [node name="drop_spot15" parent="." unique_id=1173534015 instance=ExtResource("4_ts2wc")]
-position = Vector2(754, 750)
+position = Vector2(755, 752)
 
 [node name="drop_spot16" parent="." unique_id=390362317 instance=ExtResource("4_ts2wc")]
-position = Vector2(631, 753)
+position = Vector2(632, 755)
 
 [node name="drop_spot17" parent="." unique_id=1402443050 instance=ExtResource("4_ts2wc")]
-position = Vector2(512, 749)
+position = Vector2(513, 751)
 
 [node name="drop_spot18" parent="." unique_id=1337516162 instance=ExtResource("4_ts2wc")]
-position = Vector2(391, 750)
+position = Vector2(392, 752)
 
 [node name="drop_spot19" parent="." unique_id=308760129 instance=ExtResource("4_ts2wc")]
-position = Vector2(395, 631)
+position = Vector2(396, 633)
 
 [node name="drop_spot20" parent="." unique_id=650038909 instance=ExtResource("4_ts2wc")]
-position = Vector2(391, 510)
+position = Vector2(392, 512)
 
 [node name="drop_spot21" parent="." unique_id=311855448 instance=ExtResource("4_ts2wc")]
-position = Vector2(391, 387)
+position = Vector2(392, 389)
 
 [node name="drop_spot22" parent="." unique_id=2086275309 instance=ExtResource("4_ts2wc")]
-position = Vector2(391, 268)
+position = Vector2(392, 270)
 
 [node name="sun_sprite" type="Sprite2D" parent="." unique_id=1482364296]
 visible = false
@@ -112,6 +112,8 @@ scale = Vector2(0.07, 0.07)
 texture = ExtResource("5_njjyx")
 
 [node name="main_UI" parent="." unique_id=1115520434 instance=ExtResource("3_hd0mk")]
+offset_right = 0.0
+offset_bottom = 0.0
 metadata/_edit_use_anchors_ = true
 
 [node name="dn_label" type="Label" parent="." unique_id=1139772042]
