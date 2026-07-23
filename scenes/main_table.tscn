@@ -19,11 +19,11 @@ tile_map_data = PackedByteArray("AAAJAAEAAgACAAAAAAAEAAMAAgAAAAEAAAAJAAcAAgACAAI
 tile_set = ExtResource("2_im7h4")
 
 [node name="cemetary" parent="." unique_id=1421515100 instance=ExtResource("4_ts2wc")]
-position = Vector2(113, 516)
-scale = Vector2(4, 4.960001)
+position = Vector2(150, 717)
+scale = Vector2(4.839, 6)
 
 [node name="arrival_spot" parent="." unique_id=635651404 instance=ExtResource("4_ts2wc")]
-position = Vector2(113, 88)
+position = Vector2(149, 121.00001)
 scale = Vector2(3.9400005, 2.672)
 
 [node name="delete_player" parent="." unique_id=774825896 instance=ExtResource("4_ts2wc")]
