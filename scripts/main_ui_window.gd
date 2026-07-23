@@ -130,3 +130,12 @@ func _on_save_btn_pressed() -> void:
 
 func _on_load_btn_pressed() -> void:
 	main_table.load_game()
+
+
+func _on_new_game_btn_pressed() -> void:
+	update_players()
+	var current_names: Array = []
+	for p in players:
+		current_names.append(p.player_name)
+	main_table.show_initial_menu(current_names)
+	print(FileAccess.get)

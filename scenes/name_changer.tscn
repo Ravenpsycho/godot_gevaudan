@@ -27,13 +27,15 @@ layout_mode = 2
 
 [node name="info_label" type="Label" parent="container" unique_id=2089192050]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 0.776471)
+theme_override_colors/font_color = Color(0.29803923, 0.43137255, 0.25490198, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
 text = "Infos pour"
 
-[node name="LineEdit" type="LineEdit" parent="container" unique_id=1976766664]
+[node name="name_input" type="LineEdit" parent="container" unique_id=1976766664]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.4862745, 0.6666667, 0.42745098, 0.23529412)
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter Player Name:"
 alignment = 1
@@ -42,6 +44,7 @@ expand_to_text_length = true
 [node name="role_filter" type="LineEdit" parent="container" unique_id=1749136183]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.29803923, 0.43137255, 0.25490198, 0.73333335)
 theme_override_font_sizes/font_size = 24
 placeholder_text = "filter roles"
 alignment = 1
@@ -61,8 +64,8 @@ theme = SubResource("Theme_jtrli")
 theme_override_font_sizes/font_size = 24
 text = "Confirm"
 
-[connection signal="text_changed" from="container/LineEdit" to="." method="_on_line_edit_text_changed"]
-[connection signal="text_submitted" from="container/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="text_changed" from="container/name_input" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="container/name_input" to="." method="_on_line_edit_text_submitted"]
 [connection signal="text_changed" from="container/role_filter" to="container/role_list" method="_on_role_filter_text_changed"]
 [connection signal="item_selected" from="container/role_list" to="." method="_on_item_list_item_selected"]
 [connection signal="pressed" from="container/Button" to="." method="_on_button_pressed"]

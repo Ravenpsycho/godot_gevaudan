@@ -19,12 +19,17 @@ const NUMBER_OF_DROP_SPOTS = 22
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var pl = preload("res://scenes/initial_menu.tscn")
-	var init_menu = pl.instantiate()
-	self.add_child(init_menu)
 	UI = $main_UI
 	growl = $growling_bear
+	show_initial_menu()
 	
+func show_initial_menu(with_names:Array = []):
+	var pl = preload("res://scenes/initial_menu.tscn")
+	var init_menu = pl.instantiate()
+	if len(with_names)>0:
+		init_menu.preset_names(with_names)
+	self.add_child(init_menu)
+
 func next_phase():
 	if game_params["day_night"] == "Nuit":
 		game_params["day_night"] = "Jour"
@@ -56,7 +61,7 @@ func night_routine():
 	if check_role("Chevalier à l'épée Rouillée"):
 		kill_player_with_tetanos()
 	establish_night_text()
-		
+
 func kill_player_with_tetanos():
 	players = get_tree().get_nodes_in_group("player_group")
 	for p: PlayerTile in players:
@@ -64,17 +69,55 @@ func kill_player_with_tetanos():
 			p.die()
 
 func establish_night_text():
-	pass
-
+	var forced: Array = []
+	var total_text: String = ""
+	var counter: int = 0
+	var night_num: int = game_params["dn_count"]
+	var to_call:Array
+	if night_num == 1:
+		to_call = GMSpeech.FIRST_NIGHT_CALL
+	elif night_num % 2 == 0:
+		to_call = GMSpeech.EVEN_NIGHT_CALL
+	else:
+		to_call = GMSpeech.ODD_NIGHT_CALL
+	if check_role("Cupidon Amoureux"):
+		forced.append("Amoureux")
+	for r in to_call:
+		if check_role(r) or r in forced:
+			if r in forced:
+				total_text += r
+				total_text += " >> "
+				counter += 1
+				if counter > 1:
+					counter = 0
+					total_text += "\n"
+				continue
+			var p = get_player_with_role(r)
+			if p.alive:
+				if r == "Joueur de Flûte":
+					forced.append("Charmés")
+				total_text += r
+				total_text += " >> "
+				counter += 1
+				if counter > 1:
+					counter = 0
+					total_text += "\n"
+	total_text = total_text.substr(0, len(total_text)-4)
+	$role_calling_list.text = total_text
+	
 func prev_phase():
 	if game_params["day_night"] == "Nuit":
 		game_params["day_night"] = "Jour"
 		game_params["dn_count"] -= 1
 		set_day()
+		morning_routine()
+		update_dn_display()
 	else:
 		game_params["day_night"] = "Nuit"
 		set_night()
-
+		night_routine()
+		update_dn_display()
+		
 func set_day():
 	$night_overlay.visible = false
 	$sun_sprite.visible = true
@@ -82,7 +125,7 @@ func set_day():
 func set_night():
 	$night_overlay.visible = true
 	$sun_sprite.visible = false
-	
+
 func update_dn_display():
 	UI.log("---%s %s---" % [game_params["day_night"], int(game_params["dn_count"])])
 	$dn_label.text = "%s %s" % [game_params["day_night"], int(game_params["dn_count"])]
@@ -94,8 +137,8 @@ func update_dn_display():
 		$prev_phase.visible = false
 	else:
 		$prev_phase.visible = true
-	
-	
+
+
 func start_game():
 	var td = Time.get_datetime_dict_from_system()
 	game_params["game_start"] = td
@@ -109,8 +152,10 @@ func start_game():
 	UI.log("Game starts at: %s:%s" % [h, minutes])
 	update_dn_display()
 	$start_game.visible = false
+	$shuffle_roles.visible = false
 	$next_phase.visible = true
-	
+	night_routine()
+
 func get_live_player_order() -> Array:
 	var ds_name:String
 	var ds: Area2D
@@ -126,13 +171,13 @@ func get_live_player_order() -> Array:
 			if p.alive:
 				order.append(p)
 	return order
-		
+
 func get_neighbors(p: PlayerTile):
 	var live_players = get_live_player_order()
 	var left: PlayerTile = live_players[0]
 	var cursor: PlayerTile = live_players[0]
 	var right: PlayerTile = live_players[0]
-	
+
 	for i in range(0, len(live_players)):
 		cursor = live_players[i]
 		if i == 0:
@@ -145,8 +190,8 @@ func get_neighbors(p: PlayerTile):
 			right = live_players[i+1]
 		if cursor == p:
 			return [left, right]
-	return [] 
-	
+	return []
+
 func neighbor_is_wherewolf(p: PlayerTile):
 	if p.is_wherewolf:
 		return true
@@ -154,8 +199,22 @@ func neighbor_is_wherewolf(p: PlayerTile):
 		if player.is_wherewolf:
 			return true
 	return false
-	
-func setup_table_for(n:int):
+
+func shuffle_roles():
+	var roles: Array = []
+	players = get_tree().get_nodes_in_group("player_group")
+	for p in players:
+		roles.append(p.role)
+	roles.shuffle()
+	for i in range(0, len(players)):
+		players[i].set_role(roles[i])
+
+func setup_table_for(names:Array):
+	players = get_tree().get_nodes_in_group("player_group")
+	for p in players:
+		p.queue_free()
+	var base_roles: Array = Array(PlayerTile.BASE_VILLAGER_ROLES.duplicate())
+	var n = len(names)
 	@warning_ignore("integer_division")
 	var ww_n = int(n/3)
 	var loader = preload("res://scenes/player_tile.tscn")
@@ -171,11 +230,15 @@ func setup_table_for(n:int):
 		if i < ww_n:
 			p.set_role("Loup Garou", false)
 		else:
-			p.set_role("Simple Villageois", false)
-		p.set_player_name("Perso_%s"%i)
+			var next_base = base_roles.pop_front()
+			if next_base:
+				p.set_role(next_base, false)
+			else:
+				p.set_role("Simple Villageois", false)
+		p.set_player_name(names[i])
 	UI.update_progress()
-		
-	
+
+
 func add_player():
 	if not arrival_spot_free():
 		return
@@ -186,21 +249,21 @@ func add_player():
 	self.add_child(new_player, true)
 	new_player.call_name_changer()
 	UI.update_progress()
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
 func arrival_spot_free():
 	return !self.get_node("arrival_spot").has_overlapping_areas()
-	
+
 func check_role(r:String):
 	players = get_tree().get_nodes_in_group("player_group")
 	for p in players:
 		if p.role == r:
 			return true
 	return false
-	
+
 func get_player_with_role(r:String) -> PlayerTile:
 	players = get_tree().get_nodes_in_group("player_group")
 	var found: PlayerTile
@@ -210,7 +273,7 @@ func get_player_with_role(r:String) -> PlayerTile:
 			return p
 	assert(found is PlayerTile)
 	return PlayerTile.new()
-	
+
 func reset_overlay_for_all(overlay_name:String):
 	players = get_tree().get_nodes_in_group("player_group")
 	for p in players:
@@ -223,9 +286,10 @@ func save():
 		"game_params": game_params
 	}
 	return savedict
-	
+
 
 func _on_next_phase_pressed() -> void:
+	save_game()
 	next_phase()
 
 func _on_prev_phase_pressed() -> void:
@@ -233,7 +297,10 @@ func _on_prev_phase_pressed() -> void:
 
 func _on_start_game_pressed() -> void:
 	start_game()
-	
+
+func _on_shuffle_roles_pressed() -> void:
+	shuffle_roles()
+
 func save_game():
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("save_group")
@@ -247,7 +314,7 @@ func save_game():
 
 		var node_data = node.call("save")
 		var json_string = JSON.stringify(node_data)
-		
+
 		save_file.store_line(json_string)
 
 func load_game():

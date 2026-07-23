@@ -125,7 +125,7 @@ func get_context():
 		return "Mentor"
 	if parent_player.role == "Corbeau":
 		return "Plumes"
-	if parent_player.role == "Joueur de flûte":
+	if parent_player.role == "Joueur de Flûte":
 		return "Charmer"
 	if parent_player.role == "Sorcière" and !parent_player.used_power:
 		return "Sauver"

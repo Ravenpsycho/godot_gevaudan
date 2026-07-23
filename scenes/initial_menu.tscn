@@ -1,19 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv6dibjjeyxbq"]
+[gd_scene format=3 uid="uid://bv6dibjjeyxbq"]
 
-[ext_resource type="Script" path="res://scripts/initial_menu.gd" id="1_ak0mr"]
+[ext_resource type="Script" uid="uid://c2jtwbuketmpy" path="res://scripts/initial_menu.gd" id="1_ak0mr"]
 
-[node name="initial_menu" type="Control"]
+[node name="initial_menu" type="Control" unique_id=749761442]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ak0mr")
 
-[node name="initial_window" type="Window" parent="."]
+[node name="initial_window" type="Window" parent="." unique_id=2027041047]
 transparent_bg = true
+oversampling_override = 1.0
 mode = 4
+position = Vector2i(0, 36)
 size = Vector2i(1560, 900)
 transparent = true
 
-[node name="container" type="VBoxContainer" parent="initial_window"]
+[node name="container" type="VBoxContainer" parent="initial_window" unique_id=342384392]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -26,31 +28,37 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MJ_label" type="Label" parent="initial_window/container"]
+[node name="MJ_label" type="Label" parent="initial_window/container" unique_id=2082103562]
 layout_mode = 2
 text = "Maître.sse de jeu:"
+horizontal_alignment = 1
 
-[node name="MJ_input" type="LineEdit" parent="initial_window/container"]
+[node name="MJ_input" type="LineEdit" parent="initial_window/container" unique_id=1236388880]
 layout_mode = 2
 
-[node name="co-MJ_label" type="Label" parent="initial_window/container"]
+[node name="co-MJ_label" type="Label" parent="initial_window/container" unique_id=1134605350]
 layout_mode = 2
 text = "co-Maître.sse de jeu:"
+horizontal_alignment = 1
 
-[node name="coMJ_input" type="LineEdit" parent="initial_window/container"]
+[node name="coMJ_input" type="LineEdit" parent="initial_window/container" unique_id=1462061592]
 layout_mode = 2
 
-[node name="n_players_label" type="Label" parent="initial_window/container"]
+[node name="n_players_label" type="Label" parent="initial_window/container" unique_id=1260953943]
 layout_mode = 2
-text = "Nombre de joueurs:"
+text = "Nom des joueurs
+(séparer par une virgule):"
+horizontal_alignment = 1
 
-[node name="n_players_input" type="LineEdit" parent="initial_window/container"]
+[node name="n_players_input" type="LineEdit" parent="initial_window/container" unique_id=1537891392]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+placeholder_text = "Ex_1, Ex_2, ..."
+
+[node name="VSplitContainer" type="VSplitContainer" parent="initial_window/container" unique_id=235731906]
 layout_mode = 2
 
-[node name="VSplitContainer" type="VSplitContainer" parent="initial_window/container"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="initial_window/container"]
+[node name="Button" type="Button" parent="initial_window/container" unique_id=809818510]
 layout_mode = 2
 text = "Valider"
 

@@ -3,7 +3,7 @@ extends Node
 class_name GMSpeech
 
 const FIRST_NIGHT_CALL: Array = [
-	"Voleur", "Comédien", "Cupidon", "Voyante", "Renard", "Corbeau", "Amoureux", 
+	"Voleur", "Comédien", "Cupidon Amoureux", "Voyante", "Renard", "Corbeau", "Amoureux", 
 	"Juge Etourdi", "Deux Soeurs", "Trois Frères", "Enfant Sauvage", 
 	"Montreur d'Ours", "Corbeau", "Pyromane", "Salvateur", "Loup Garou", 
 	"Infect Père des Loups", "Grand Méchant Loup", "Sorcière", "Gitane",

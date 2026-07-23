@@ -61,11 +61,14 @@ const WOLVES: Array =[
 
 const ALL_ROLES: Array = ['Enfant Sauvage', 'Juge Etourdi', 'Abominable Sectaire', "Deux Soeurs",
 'Bouc Emissaire', 'Voleur', 'Salvateur', 'Loup Garou', 'Renard', 'Assassin', 'Ancien du Village', 
-'Voyante', 'Petite Fille', 'Comédien', 'Simple Villageois', 'Joueur de flûte', 'Demi démon', 
+'Voyante', 'Petite Fille', 'Comédien', 'Simple Villageois', 'Joueur de Flûte', 'Demi démon', 
 'Corbeau', 'Cupidon Amoureux', 'Sorcière', "Montreur d'Ours", 'Loup Garou Blanc', 'Pyromane', 
 'Innocent du Village', 'Nécromancien', "Chevalier à l'épée Rouillée", "Trois Frères",
 'Chasseur', 'Ange', 'Chien Loup', 'Dictateur', 'Fossoyeur', 'Grand Méchant Loup',
 'Infect Père des Loups', "Servante Dévouée"]
+
+const BASE_VILLAGER_ROLES: Array = ['Voyante', 'Petite Fille', 'Sorcière',
+'Chasseur']
 
 const SHORTNAMES: Dictionary = {
 	'Enfant Sauvage': "Enfant", 
@@ -75,7 +78,7 @@ const SHORTNAMES: Dictionary = {
 	'Ancien du Village': "Ancien",
 	'Petite Fille': "Petite", 
 	'Simple Villageois': "Villageois", 
-	'Joueur de flûte' : "Flûte", 
+	'Joueur de Flûte' : "Flûte", 
 	"Montreur d'Ours": "Ours", 
 	'Loup Garou Blanc': "Loup Blanc",
 	'Innocent du Village': "Innocent", 
@@ -167,10 +170,13 @@ func process_dropspot(drop_spot):
 				solo.visible = true
 
 func call_name_changer():
+	if get_node("name_changer"):
+		return
 	var nc = preload("res://scenes/name_changer.tscn").instantiate()
 	nc.get_node("container/info_label").text = "infos pour %s" % self.name
 	nc.set_player(self)
-	main_table.add_child(nc)
+	nc.position = Vector2(0, 0)
+	add_child(nc)
 			
 func infect():
 	is_wherewolf = true
