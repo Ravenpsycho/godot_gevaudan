@@ -65,7 +65,7 @@ const ALL_ROLES: Array = ['Enfant Sauvage', 'Juge Etourdi', 'Abominable Sectaire
 'Corbeau', 'Cupidon Amoureux', 'Sorcière', "Montreur d'Ours", 'Loup Garou Blanc', 'Pyromane', 
 'Innocent du Village', 'Nécromancien', "Chevalier à l'épée Rouillée", "Trois Frères",
 'Chasseur', 'Ange', 'Chien Loup', 'Dictateur', 'Fossoyeur', 'Grand Méchant Loup',
-'Infect Père des Loups']
+'Infect Père des Loups', "Servante Dévouée"]
 
 const SHORTNAMES: Dictionary = {
 	'Enfant Sauvage': "Enfant", 
@@ -82,7 +82,8 @@ const SHORTNAMES: Dictionary = {
 	"Chevalier à l'épée Rouillée": "Chevalier",
 	'Grand Méchant Loup': "Grand Loup",
 	'Infect Père des Loups': "Infect",
-	'Cupidon Amoureux': "Cupidon 💘"
+	'Cupidon Amoureux': "Cupidon 💘",
+	'Servante Dévouée': "Servant.e"
 }
 
 signal interact_with
@@ -159,7 +160,12 @@ func process_dropspot(drop_spot):
 			self.queue_free()
 		else:
 			tween.tween_property(self, "position", drop_spot.position, delay)
-			
+			var solo = $solo_menu
+			var context_btn = $solo_menu/ReferenceRect/Context
+			solo.change_context()
+			if !(context_btn.text == ""):
+				solo.visible = true
+
 func call_name_changer():
 	var nc = preload("res://scenes/name_changer.tscn").instantiate()
 	nc.get_node("container/info_label").text = "infos pour %s" % self.name

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bbt771rigxmgo"]
+
+[ext_resource type="Script" uid="uid://dycb3n2y4k5g2" path="res://scripts/solo_menu.gd" id="1_j8t72"]
+
+[node name="solo_menu" type="Control" unique_id=1523792407]
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_j8t72")
+
+[node name="ReferenceRect" type="VBoxContainer" parent="." unique_id=1474080578]
+layout_mode = 0
+offset_left = 51.0
+offset_top = -66.0
+offset_right = 187.0
+offset_bottom = 70.0
+alignment = 1
+
+[node name="Context" type="Button" parent="ReferenceRect" unique_id=46601301]
+layout_mode = 2
+text = "ctx"
+
+[node name="Cancel" type="Button" parent="ReferenceRect" unique_id=1118951587]
+layout_mode = 2
+text = "Annuler"
+
+[connection signal="pressed" from="ReferenceRect/Context" to="." method="_on_context_pressed"]
+[connection signal="pressed" from="ReferenceRect/Cancel" to="." method="_on_cancel_pressed"]

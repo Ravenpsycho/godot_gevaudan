@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bni7klo1ya3j2" path="res://images/flute_overlay.png" id="11_v7kp2"]
 [ext_resource type="Texture2D" uid="uid://bn6nnb0u25vjm" path="res://images/voted_ww.png" id="12_d4gtn"]
 [ext_resource type="Texture2D" uid="uid://dbm6mo8vp772p" path="res://images/voted_village.png" id="13_soxnc"]
+[ext_resource type="PackedScene" uid="uid://bbt771rigxmgo" path="res://scenes/solo_menu.tscn" id="17_soxnc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e325f"]
 size = Vector2(62, 65)
@@ -146,6 +147,12 @@ z_as_relative = true
 offset_right = -60.0
 offset_bottom = -60.0
 metadata/_edit_use_anchors_ = true
+
+[node name="solo_menu" parent="." unique_id=1523792407 instance=ExtResource("17_soxnc")]
+visible = false
+z_index = 5
+offset_top = 1.0
+offset_bottom = 1.0
 
 [connection signal="interact_with" from="." to="interact_menu" method="_on_player_tile_interact_with"]
 [connection signal="name_changed" from="." to="player_name_label" method="_on_player_tile_name_changed"]

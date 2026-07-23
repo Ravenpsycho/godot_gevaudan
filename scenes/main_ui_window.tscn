@@ -25,6 +25,8 @@ text = "Villageois : X/Y
 Loups : X/Y
 Solitaire 1: X/Y
 Solitaire 2: X/Y"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="reset_lovers" type="Button" parent="status_display" unique_id=1786686044]

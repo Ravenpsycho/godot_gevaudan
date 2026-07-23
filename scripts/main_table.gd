@@ -13,6 +13,7 @@ var game_params: Dictionary = {
 	"dn_count": 1,
 	"last_protected": ""
 }
+var growl: Sprite2D
 
 const NUMBER_OF_DROP_SPOTS = 22
 
@@ -22,6 +23,7 @@ func _ready() -> void:
 	var init_menu = pl.instantiate()
 	self.add_child(init_menu)
 	UI = $main_UI
+	growl = $growling_bear
 	
 func next_phase():
 	if game_params["day_night"] == "Nuit":
@@ -40,12 +42,17 @@ func next_phase():
 
 func morning_routine():
 	reset_overlay_for_all("voted_ww")
+	if check_role("Montreur d'Ours"):
+		var mo = get_player_with_role("Montreur d'Ours")
+		if neighbor_is_wherewolf(mo) and mo.alive:
+			growl.visible = true
 	if check_role("Salvateur"):
 		reset_overlay_for_all("protected_overlay")
 		UI.log("La protection du Salvateur\nne fait plus effet!")
 
 func night_routine():
 	reset_overlay_for_all("voted_village")
+	growl.visible = false
 	if check_role("Chevalier à l'épée Rouillée"):
 		kill_player_with_tetanos()
 	establish_night_text()
