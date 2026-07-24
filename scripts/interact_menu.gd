@@ -117,7 +117,7 @@ func _on_player_tile_interact_with(origin, target) -> void:
 	z_index = RenderingServer.CANVAS_ITEM_Z_MAX
 	if ctx.text == "":
 		ctx.visible = false
-	if !test_for_role("Cupidon"):
+	if !test_for_role("Cupidon Amoureux"):
 		love.visible = false
 	
 func get_context():
