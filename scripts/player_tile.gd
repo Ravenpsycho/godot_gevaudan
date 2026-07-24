@@ -169,8 +169,16 @@ func process_dropspot(drop_spot):
 			var context_btn = $solo_menu/ReferenceRect/Context
 			var mayor_btn = $solo_menu/ReferenceRect/Elire_Maire
 			solo.change_context()
-			if !(context_btn.text == "") or !(mayor_btn.text == ""):
-				solo.visible = true
+			if !(context_btn.text == "") or !(mayor_btn.text == ""):	
+				if !check_solo_menu():
+					solo.visible = true
+
+func check_solo_menu():
+	var players = get_tree().get_nodes_in_group("player_group")
+	for p in players:
+		if p.get_node("solo_menu").visible:
+			return true
+	return false
 
 func call_name_changer():
 	if get_node("name_changer"):
